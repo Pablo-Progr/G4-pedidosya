@@ -1,0 +1,46 @@
+.navbar-header{
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-bottom:1px solid rgb(219, 218, 222);
+}
+
+.img-logo{
+    width: 120px;
+    height: 27px;
+}
+
+.search-container {
+    background-color: #edeced;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    width: 70%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.input-header{
+    border: none;
+    background: transparent;
+    outline: none;
+    flex:1;
+    font-size: 16px;
+    color: #3c3c5c;
+}
+
+.boton-buscar-header{
+    background-color: #e60050;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;  
+}
+
+.boton-buscar-header-i {
+    color: white;
+    font-size: 16px;
+}
