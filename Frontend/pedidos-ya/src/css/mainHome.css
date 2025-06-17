@@ -1,0 +1,40 @@
+.card-tipo-locales{
+    max-width: 166px;
+    min-height: 84px;
+    font-size: 12px;
+    margin: 0px;
+    background-color: rgb(243, 242, 244);
+    border-radius: 16px;
+    margin-right: 10px;
+    position: relative;
+    flex-direction: column;
+}
+
+.card-tipo-locales:hover{
+    border: 1px solid black;
+}
+
+a div{
+    display: flex;
+    justify-content: center;
+}
+
+.img-tipo-locales{
+    width: 132px;
+    height: 61px;   
+    margin: 0px;
+}
+
+
+
+
+
+
+
+
+
+.contenedor-marketing{
+    margin-top:30px ;
+    padding-top: 20px;
+    background-color: rgb(243, 242, 244);
+}

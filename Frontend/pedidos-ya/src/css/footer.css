@@ -1,0 +1,21 @@
+footer{
+    background-color: #e60050;
+    text-decoration: none;
+    color: aliceblue;
+    padding: 20px;
+}
+
+a{
+    text-decoration:none ;
+    color: aliceblue;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+
+p{
+    margin: 10px 0px;
+}
+
+img{
+    margin: 10px 0px;  
+}

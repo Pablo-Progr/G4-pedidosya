@@ -10,10 +10,10 @@ import '../css/header.css'
 const Header = () => {
   return (
     <Navbar expand="lg" className="row navbar-header">
-      <div className="col">
-        <img src={Logo} className="img-logo"/>
+      <div className="col d-flex justify-content-center">
+        <img src={Logo} className="img-logo" />
       </div>
-      <div className="col-6">
+      <div className="col-6 d-flex justify-content-center">
         <Form className="d-flex search-container">
           <Form.Control
             type="Search"
@@ -22,19 +22,19 @@ const Header = () => {
             aria-label="Search"
           />
           <button className="boton-buscar-header">
-            <IoIosSearch className="boton-buscar-header-i"/>
+            <IoIosSearch className="boton-buscar-header-i" />
           </button>
         </Form>
       </div>
-      <div className="col d-flex  justify-content-center">
+      <div className="col d-flex justify-content-end">
         <div>
           <IoPersonOutline />
         </div>
         <div>
-          <NavDropdown title="Mi Perfil" id="navbarScrollingDropdown"> 
-          <NavDropdown.Item href="#action3">Ayuda en Linea</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Iniciar Sesion</NavDropdown.Item>
-        </NavDropdown>
+          <NavDropdown title="Mi Perfil" id="navbarScrollingDropdown">
+            <NavDropdown.Item href="#action3">Ayuda en Linea</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">Iniciar Sesion</NavDropdown.Item>
+          </NavDropdown>
         </div>
       </div>
     </Navbar>
