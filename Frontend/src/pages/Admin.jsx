@@ -1,9 +1,10 @@
 import React from 'react'
+import MainAdmin from '../components/MainAdmin';
 
 const Admin = () => {
   return (
     <div>
-      <h1>Admin</h1>
+      <MainAdmin/>
     </div>
   );
 }
