@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import MainRestaurantes from '../components/MainRestaurantes';
 
 const Restaurantes = () => {
   return (
       <div>
           <Header/>
-          <h1>Restaurantes</h1>
+          <MainRestaurantes/>
           <Footer/>
     </div>
   );
