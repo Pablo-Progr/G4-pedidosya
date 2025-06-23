@@ -8,10 +8,10 @@ const PORT = 8000 //Guardo en variable el puerto que corre el localhost
 app.use(express.json()) //tramsformo en json 
 
 let conection = mysql.createConnection({ //Guardo en variable datos para ingresar a la BD
-    host: "localhost", 
+    host: "localhost",
     user: "root",
-    password: "Mysqlblopa99",
-    database:"pedidosya"
+    password: "matias201018",
+    database: "pedidosya"
 })
 
 
@@ -21,7 +21,7 @@ app.get("/", (resq, res) => {        //Hago peticion get para corroborar mi cone
 })
 
 //creo consulta por medio de la conexion a la BD
-app.get("/usuarios", (req, res)=>{
+app.get("/usuarios", (req, res) => {
     const consulta = "select * from usuarios"
 
     conection.query(consulta, (error, results) => {
@@ -35,7 +35,7 @@ app.post("/productos/buscarProducto", (req, res) => {
     const nombreProducto = req.body.nombre
 
     let consultaProducto = "select * from productos where nombre=" + nombreProducto
-    
+
     conection.query(consultaProducto, (error, results) => {
         if (error) throw error
         res.json(results)
