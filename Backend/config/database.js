@@ -3,8 +3,8 @@ const mysql = require("mysql2") //importo libreria sql
 
  const conection = mysql.createConnection({ //Guardo en variable datos para ingresar a la BD
     host: "localhost", 
-    user: "root",
-    password: "Mysqlblopa99",
+    user: "pedidosya",
+    password: "Pedidosya25",
     database:"pedidosya"
 })
 

@@ -11,8 +11,6 @@ app.get("/", (resq, res) => {        //Hago peticion get para corroborar mi cone
     res.send("Bienvenido a mi api")
 })
 
-
-
 conection.connect((error) => { // realizo la conexion con la base de datos
     if (error) throw error
     console.log("Conectado a mi DB")
