@@ -10,6 +10,11 @@
     height: 27px;
 }
 
+.perfil{
+    display: flex;
+    align-items: center;
+}
+
 .search-container {
     background-color: #edeced;
     border-radius: 50px;

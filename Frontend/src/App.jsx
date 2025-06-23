@@ -6,6 +6,7 @@ import Restaurante from './pages/Restaurante';
 import Pedido from './pages/Pedido';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
+import AdminCrud from './pages/AdminCrud';
 
 function App() {
 
@@ -14,12 +15,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Restaurantes" element={<Restaurantes/>} />
-          <Route path="/Restaurante" element={<Restaurante/>} />
-          <Route path="/Pedido" element={<Pedido/>} />
-          <Route path="/Login" element={<Login/>} />
-          <Route path="/Admin" element={<Admin />} />\
-          
+          <Route path="/Restaurantes" element={<Restaurantes />} />
+          <Route path="/Restaurante" element={<Restaurante />} />
+          <Route path="/Pedido" element={<Pedido />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/AdminCrud" element={<AdminCrud />} />
         </Routes>
       </BrowserRouter>
     </>

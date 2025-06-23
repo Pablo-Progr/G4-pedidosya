@@ -26,12 +26,12 @@ const Header = () => {
           </button>
         </Form>
       </div>
-      <div className="col d-flex justify-content-end">
-        <div>
+      <div className="col d-flex justify-content-center">
+        <div className="m-2 perfil">
           <IoPersonOutline />
         </div>
-        <div>
-          <NavDropdown title="Mi Perfil" id="navbarScrollingDropdown">
+        <div className="m-2 perfil">
+          <NavDropdown title="Mi Perfil">
             <NavDropdown.Item href="#action3">Ayuda en Linea</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Iniciar Sesion</NavDropdown.Item>
           </NavDropdown>

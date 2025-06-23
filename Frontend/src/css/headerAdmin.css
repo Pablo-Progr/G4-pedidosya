@@ -1,0 +1,35 @@
+.navbar-header{
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-bottom:1px solid rgb(219, 218, 222);
+}
+
+.img-logo{
+    width: 120px;
+    height: 27px;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+}
+
+.linkBotonAdmin{
+    text-decoration: none;
+}
+
+.botonAdmin{
+    border: solid #e60050 ;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #e60050;
+    color: aliceblue;
+}
+
+.botonAdmin:hover{
+    transform: scale(1.05);
+}
+
+
+
