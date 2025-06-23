@@ -1,25 +1,12 @@
 const { conection } = require("../config/database")
 
-const getProductos = (req, res) => {
+//creo consulta por medio de la conexion a la BD
+app.get("/usuarios", (req, res) => {
+    const consulta = "select * from usuarios"
 
-    const consulta =  "select * from productos;"
     conection.query(consulta, (error, results) => {
         if (error) throw error
-        res.json(results)
+        //res.json(results)
+        res.send(results)
     })
-}
-
-const getProducto = () => {
-
-}
-
-const deleteProducto = () => {
-
-}
-
-const updateProducto = () => {
-    
-}
-
-
-module.exports = {getProductos ,getProducto, deleteProducto}
+})
