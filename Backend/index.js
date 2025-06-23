@@ -1,18 +1,13 @@
 const express = require("express") // importo libreria express
-const mysql = require("mysql2") //importo libreria sql
+const {conection} = require("./config/database")
 
 const app = express() //Guardo la funcion de express en una variable
 
-const PORT = 8000 //Guardo en variable el puerto que corre el localhost
+const PORT = 8000  //Guardo en variable el puerto que corre el localhost
 
 app.use(express.json()) //tramsformo en json 
 
-let conection = mysql.createConnection({ //Guardo en variable datos para ingresar a la BD
-    host: "localhost", 
-    user: "root",
-    password: "Mysqlblopa99",
-    database:"pedidosya"
-})
+
 
 
 
@@ -49,7 +44,7 @@ conection.connect((error) => { // realizo la conexion con la base de datos
 })
 
 app.listen(PORT, () => {
-    console.log("Escuchando el puerto " + PORT)
+    console.log("Escuchando el puerto " + PORT) //puerto de escucha
 })
 
 
