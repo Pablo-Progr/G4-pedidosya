@@ -1,10 +1,26 @@
 import React from "react";
 import "../css/restaurantes.css";
-import parrilladaFoto from "../img/parrillada.jpg";
-import hamburguesaFoto from "../img/hambur.jpg";
-import pizzaFoto from "../img/pizza.jpeg";
-import empanadaFoto from "../img/empanadas.jpg";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 const MainRestaurantes = () => {
+  const [locales, setLocales] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/locales");
+        setLocales(response.data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
   return (
     <div className="page-layout">
       {/* Columna izquierda */}
@@ -19,86 +35,25 @@ const MainRestaurantes = () => {
 
       {/* Columna central con las cards */}
       <main className="restaurantes-wrapper">
-        <div className="restaurant-card">
-          <img
-            className="restaurant-logo"
-            src={parrilladaFoto}
-            alt="Logo"
-          />
-          <div className="restaurant-info">
-            <span className="sponsored">PATROCINADO</span>
-            <h3 className="restaurant-name">Don Calcagni Parrillada</h3>
-            <div className="restaurant-meta">
-              <span>15-30 min</span>
-              <span>·</span>
-              <span>Envío $850</span>
-            </div>
+        {locales.map((local, index) => (
+          <div className="restaurant-card" key={local.idLocal}>
+            <Link to={`/restaurante/${local.idLocal}`}>
+              <img className="restaurant-logo" src={local.imagen} alt="Logo" />
+              <div className="restaurant-info">
+                <h3 className="restaurant-name">
+                  {index + 1}. {local.nombre}
+                </h3>
+                <div className="restaurant-meta">
+                  <span>{local.direccion}</span>
+                </div>
+              </div>
+              <div className="restaurant-rating">
+                <span className="star">★</span>
+                <span>5</span>
+              </div>
+            </Link>
           </div>
-          <div className="restaurant-rating">
-            <span className="star">★</span>
-            <span>5</span>
-          </div>
-        </div>
-
-        <div className="restaurant-card">
-          <img
-            className="restaurant-logo"
-            src={pizzaFoto}
-            alt="Logo"
-          />
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Pizzería: Lo de Pablo</h3>
-            <div className="restaurant-meta">
-              <span>15-30 min</span>
-              <span>·</span>
-              <span>Envío $1.029</span>
-            </div>
-          </div>
-          <div className="restaurant-rating">
-            <span className="star">★</span>
-            <span>4.5</span>
-          </div>
-        </div>
-
-        <div className="restaurant-card">
-          <img
-            className="restaurant-logo"
-            src={hamburguesaFoto}
-            alt="Logo"
-          />
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Roldán Hamburguesas</h3>
-            <div className="restaurant-meta">
-              <span>10-15 min</span>
-              <span>·</span>
-              <span>Envío $1.000</span>
-            </div>
-          </div>
-          <div className="restaurant-rating">
-            <span className="star">★</span>
-            <span>4</span>
-          </div>
-        </div>
-
-        <div className="restaurant-card">
-          <img
-            className="restaurant-logo"
-            src={empanadaFoto}
-            alt="Logo"
-          />
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Alvarez Empanadas y más!</h3>
-            <div className="restaurant-meta">
-              <span>20-45 min</span>
-              <span>·</span>
-              <span>Envío GRATIS</span>
-            </div>
-          </div>
-          <div className="restaurant-rating">
-            <span className="star">★</span>
-            <span>1.5</span>
-          </div>
-        </div>
+        ))}
       </main>
 
       {/* Columna derecha */}
