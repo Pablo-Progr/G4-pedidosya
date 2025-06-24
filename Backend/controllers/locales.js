@@ -10,6 +10,16 @@ const getLocales = (req, res) => {
     })
 }
 
+const deleteLocal = (req, res) => {
+    const {id} = req.params
+    const consulta = "delete from locales where idLocal=?"
+
+    conection.query(consulta, [id ], (error, results) => {
+        if (error) throw error
+        res.status(200).send({message:"Local eliminado correctamente"})
+    } )
+}
+
 const crearLocal = (req, res) => {
     console.log(req.body)
 
@@ -21,4 +31,4 @@ const crearLocal = (req, res) => {
     })
 }
 
-module.exports = {getLocales,crearLocal}
+module.exports = {getLocales,deleteLocal,crearLocal}

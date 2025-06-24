@@ -24,6 +24,15 @@ const MainAdminCrud = () => {
     fetchArticles();
   }, []);
 
+  const handleDelete = async (idLocal) => {
+    try {
+      await axios.delete(`http://localhost:8000/locales/eliminar/${idLocal}`);
+      setLocales(locales.filter((locales) => locales.idLocal !== idLocal));
+    } catch (error) {
+      console.error("Error eliminando local:", error);
+    }
+  };
+
   return (
     <div className="container-mains">
       <div className="container text-center div-content-admin">
@@ -57,7 +66,10 @@ const MainAdminCrud = () => {
                   <Link className="btn btn-warning">
                     <FaEdit />
                   </Link>
-                  <button className="btn btn-danger">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(locales.idLocal)}
+                  >
                     <FaTrash />
                   </button>
                 </td>
