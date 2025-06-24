@@ -21,8 +21,7 @@ const deleteLocal = (req, res) => {
 }
 
 const crearLocal = (req, res) => {
-    console.log(req.body)
-
+    const { nombre, direccion, idValoracion, imagen } = req.body;
     const consulta = "insert into Locales (nombre,direccion,idValoracion,imagen) values(?,?,?,?);"
 
     conection.query(consulta,[nombre,direccion,idValoracion,imagen ], (error, results) =>{

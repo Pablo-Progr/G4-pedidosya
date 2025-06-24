@@ -32,7 +32,7 @@ const MainAdmin = () => {
             nombre: datos.nombre,
             direccion: datos.direccion,
             idValoracion: datos.idValoracion,
-            imagen: datos.imagen,
+            imagen: datos.imagen
           }
         );
         if (response) {
