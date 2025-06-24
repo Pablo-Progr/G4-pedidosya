@@ -5,7 +5,7 @@ const { getLocales, crearLocal } = require("../controllers/locales")
 const router = express.Router()
 
 router.get("/locales", getLocales)
-router.post("/crearLocal", crearLocal)
+router.post("/locales/crearLocal", crearLocal)
 
 
 

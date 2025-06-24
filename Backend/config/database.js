@@ -5,7 +5,7 @@ const mysql = require("mysql2") //importo libreria sql
     host: "localhost", 
     user: "pedidosya",
     password: "Pedidosya25",
-     database: "pedidosya"
+    database:"pedidosya"
 })
 
 

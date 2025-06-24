@@ -11,15 +11,14 @@ const getLocales = (req, res) => {
 }
 
 const crearLocal = (req, res) => {
-
-    const {nombre,direccion,idValoracion,imagen} = req.body
+    console.log(req.body)
 
     const consulta = "insert into Locales (nombre,direccion,idValoracion,imagen) values(?,?,?,?);"
 
-    conection.query(consulta,[nombre,direccion,idValoracion,imagen ]), (error, results) =>{
+    conection.query(consulta,[nombre,direccion,idValoracion,imagen ], (error, results) =>{
         if (error) throw res.status(500).send({message:"algo salio mal"})
-        res.send({ message: "Local agregado correctamente" })
-    }
+           res.status(200).send({ message: "Local agregado correctamente" });
+    })
 }
 
 module.exports = {getLocales,crearLocal}

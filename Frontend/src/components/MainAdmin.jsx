@@ -27,11 +27,12 @@ const MainAdmin = () => {
 
       try {
         let response = await axios.post(
-          "http://localhost:8000/crearLocal",
+          "http://localhost:8000/locales/crearLocal",
           {
             nombre: datos.nombre,
             direccion: datos.direccion,
-            imagen: datos.imagen
+            idValoracion: datos.idValoracion,
+            imagen: datos.imagen,
           }
         );
         if (response) {
@@ -74,10 +75,20 @@ const MainAdmin = () => {
                 <h5>Direccion</h5>
               </Form.Label>
               <Form.Control
-                as="textarea"
-                rows={3}
+                type="text"
                 placeholder="Ingrese la descripción"
                 name="direccion"
+                onChange={handleChange}
+              ></Form.Control>
+            </FormGroup>
+            <FormGroup className="form-group-admin">
+              <Form.Label className="mb-3">
+                <h5>Valoracion</h5>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ingrese la descripción"
+                name="idValoracion"
                 onChange={handleChange}
               ></Form.Control>
             </FormGroup>
