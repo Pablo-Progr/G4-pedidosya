@@ -1,81 +1,73 @@
 import React from "react";
 import "../css/mainRestaurante.css"; // Importa tu archivo CSS para estilos
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const MainRestaurante = () => {
+  const { id } = useParams();
+  const [local, setLocal] = useState(null);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/pr/local/${id}`
+        );
+        setLocal(response.data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, [id]);
+
+  if (!local) return <p>Cargando...</p>;
+
   return (
-    <div className="main-restaurante">
-      {/* Columna izquierda */}
-      <aside className=" left-sidebar">
-        <br />
-        <div className="extremos">
-          <h6>Delivery</h6>
-          <p>15 - 30 min·$1.099 envío·Mínimo $5.399</p>
-        </div>
-        <br />
-        <div className="extremos">
-          <h3>categoria</h3>
-          <ul>
-            <li>Hamburguesa</li>
-            <li>Pizza</li>
-            <li>Milanesa</li>
-          </ul>
-        </div>
-      </aside>
+    <div>
+      <h1>{local.nombre}</h1>
+      <p>{local.direccion}</p>
 
-      {/* Columna central con las cards */}
-      <main className="product-wrapper">
-        <div className="product-card">
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Sándwich de carne molida</h3>
-            <div className="restaurant-meta">
-              <p>Con agregado de papas</p>
-            </div>
+      <div className="main-restaurante">
+        {/* Columna izquierda */}
+        <aside className=" left-sidebar">
+          <br />
+          <div className="extremos">
+            <h6>Delivery</h6>
+            <p>15 - 30 min·$1.099 envío·Mínimo $5.399</p>
           </div>
-          <div>
-            <span className="star">$</span>
-            <span>6.000</span>
+          <br />
+          <div className="extremos">
+            <h3>categoria</h3>
+            <ul>
+              <li>Hamburguesa</li>
+              <li>Pizza</li>
+              <li>Milanesa</li>
+            </ul>
           </div>
-        </div>
+        </aside>
 
-        <div className="product-card">
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Pizza común</h3>
-            <div className="restaurant-meta">
-              <p>Salsa de tomate, muzzarela, aceitunas.</p>
-            </div>
-          </div>
-          <div>
-            <span className="star">$</span>
-            <span>9.000</span>
-          </div>
-        </div>
+        {/* Columna central con las cards */}
 
-        <div className="product-card">
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Milanesa napolitana de nalga</h3>
-            <div className="restaurant-meta">
-              <p>Para 2 personas</p>
+        <main className="product-wrapper">
+          {local.productos.map((producto) => (
+            <div className="product-card" key={producto.id}>
+              <div className="restaurant-info">
+                <h3 className="restaurant-name">{producto.nombre}</h3>
+                <div className="restaurant-meta">
+                  <p>{producto.descripcion}</p>
+                </div>
+              </div>
+              <div>
+                <span className="star">$</span>
+                <span>{producto.precio}</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <span className="star">$</span>
-            <span>19.000</span>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="restaurant-info">
-            <h3 className="restaurant-name">Hamburguesa triple</h3>
-            <div className="restaurant-meta">
-              <p>Con queso, lechuga y tomate</p>
-            </div>
-          </div>
-          <div>
-            <span className="star">$</span>
-            <span>14.000</span>
-          </div>
-        </div>
-      </main>
+          ))}
+        </main>
+      </div>
     </div>
   );
 };
