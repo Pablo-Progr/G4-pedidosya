@@ -34,4 +34,20 @@ const crearLocal = (req, res) => {
     res.status(200).send({ message: "Local agregado correctamente" });
 }
 
-module.exports = { getLocales, deleteLocal, crearLocal }
+//Funcion para Editar Local
+const editarLocal = (req, res) => {
+    const { id } = req.params;
+    const { nombre, direccion, imagen } = req.body;
+  
+    const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ? WHERE idLocal = ?";
+  
+    conection.query (consulta, [nombre, direccion, imagen, id], (err, result) => {
+      if (err) {
+        console.error("Error al actualizar el local:", err);
+        return res.status(500).json({ mensaje: "Error al actualizar el local" });
+      }
+      res.json({ mensaje: "Local actualizado correctamente" });
+    });
+  };
+
+module.exports = { getLocales, deleteLocal, crearLocal, editarLocal}
