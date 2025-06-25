@@ -1,21 +1,40 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import "../css/maincarrito.css";
 
 const MainCarrito = () => {
+  const [productos, setProductos] = useState([]);
+
+   const fetchProductos = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/pr/productos");
+        setProductos(response.data);
+      } catch (error) {
+        console.error("Error fetching productos:", error);
+      }
+    };
+
+  useEffect(() => {
+   
+
+    fetchProductos();
+  }, []);
+  
+
+
   return (
     <div className="main-carrito">
-
       <div className="cardProductos">
         <h2>Mi pedido</h2>
         <div className="radio-group">
-          <label>
-            Doble Cuarto de Libra con Queso
-          </label>
-          <label>
-            Nuggets de Pollo x20
-          </label>
-          <label >
-            Pepsi 1.5L
-          </label>
+          {productos.map((producto) => (
+              <label key={producto.id}>
+                {producto.nombre} - ${producto.precio}
+              </label>
+            )
+          )}
         </div>
         <button className="btn">Agregar</button>
       </div>
@@ -38,7 +57,6 @@ const MainCarrito = () => {
         <button className="coupon-btn">Pasar a finalizar compra</button>
         <div className="total">Total $8.368</div>
       </div>
-
     </div>
   );
 };
