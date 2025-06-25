@@ -48,6 +48,27 @@ const editarLocal = (req, res) => {
       }
       res.json({ mensaje: "Local actualizado correctamente" });
     });
+};
+  
+//Funcion Para buscar Restaurante
+const buscarLocales = (req, res) => {
+    const { termino } = req.query;
+  
+    const consulta = `
+      SELECT * FROM Locales 
+      WHERE nombre LIKE ? OR direccion LIKE ?
+    `;
+  
+    const terminoBusqueda = `%${termino}%`;
+  
+    conection.query(consulta, [terminoBusqueda, terminoBusqueda], (error, results) => {
+      if (error) {
+        console.error("Error al buscar locales:", error);
+        return res.status(500).json({ mensaje: "Error en la búsqueda" });
+      }
+  
+      res.json(results);
+    });
   };
 
-module.exports = { getLocales, deleteLocal, crearLocal, editarLocal}
+module.exports = { getLocales, deleteLocal, crearLocal, editarLocal,buscarLocales}

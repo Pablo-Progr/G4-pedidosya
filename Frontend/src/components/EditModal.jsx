@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const EditModal = ({ show, onClose, localData, onUpdate }) => {
-  const [nombre, setNombre] = useState("");
+  //Estados Para Los Datos del Local
+  const [nombre, setNombre] = useState(""); 
   const [direccion, setDireccion] = useState("");
   const [imagen, setImagen] = useState("");
 
+  //UseEffect Para Que Se Ejecute cuando cuadno cambie la variable
   useEffect(() => {
     if (localData) {
       setNombre(localData.nombre);
@@ -14,6 +16,7 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
     }
   }, [localData]);
 
+  //Funcion Para Actualizar Los Datos Del Local
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,17 +35,21 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
     }
   };
 
+  //Control Del Modal 
   if (!show) return null;
 
   return (
     <div
       className="modal fade show d-block"
-      style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+      style={{ backgroundColor: "rgba(0,0,0,0.5)", width: "100%" }}
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <form onSubmit={handleSubmit}>
-            <div className="modal-header">
+            <div
+              className="modal-header"
+              style={{ backgroundColor: "#e60050", color:" white" }}
+            >
               <h5 className="modal-title">Editar Local</h5>
               <button
                 type="button"
@@ -81,7 +88,10 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
                 />
               </div>
             </div>
-            <div className="modal-footer">
+            <div
+              className="modal-footer"
+              style={{ backgroundColor: "#e60050" }}
+            >
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -89,7 +99,7 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
               >
                 Cancelar
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-success">
                 Guardar Cambios
               </button>
             </div>

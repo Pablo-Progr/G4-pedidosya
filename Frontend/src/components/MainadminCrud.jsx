@@ -20,10 +20,12 @@ const MainAdminCrud = () => {
     }
   };
 
+  
   useEffect(() => {
     fetchLocales();
   }, []);
 
+  //Fncion Con Axios Para Eliminar Local
   const handleDelete = async (idLocal) => {
     try {
       await axios.delete(`http://localhost:8000/locales/eliminar/${idLocal}`);
@@ -33,11 +35,13 @@ const MainAdminCrud = () => {
     }
   };
 
+  //Funcion para abrir modal para editar
   const abrirModal = (local) => {
     setLocalSeleccionado(local);
     setModalVisible(true);
   };
 
+  //Funcion para cerrar modal para editar
   const cerrarModal = () => {
     setModalVisible(false);
     setLocalSeleccionado(null);
@@ -92,7 +96,7 @@ const MainAdminCrud = () => {
         </Table>
       </div>
 
-      {/* Modal de Edición */}
+      {/* Modal para Edición De Local */}
       <EditModal
         show={modalVisible}
         onClose={cerrarModal}
