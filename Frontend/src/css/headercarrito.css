@@ -1,0 +1,19 @@
+.icon-back {
+  color: black;
+  font-size: 35px;
+
+
+  margin-right: 20px;
+  cursor: pointer;
+
+}
+
+.header-carrito {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;   
+  background-clip: padding-box;
+  
+  margin-bottom: 10px;
+}
