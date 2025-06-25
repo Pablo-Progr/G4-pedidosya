@@ -13,6 +13,7 @@ app.use(cors())
 app.use("/", routesLocales)
 app.use("/pr", routesProductos) // uso las rutas de productos
 
+
 app.get("/", (req, res) => {        //Hago peticion get para corroborar mi conexion
     res.send("Bienvenido a mi api")
 })

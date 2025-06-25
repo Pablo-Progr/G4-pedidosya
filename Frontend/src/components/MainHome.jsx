@@ -6,6 +6,7 @@ import heladoFoto from "../img/helados-foto.webp";
 import bebidaFoto from "../img/drinks-foto.webp";
 import kioscoFoto from "../img/kioscos-foto.webp";
 import "../css/mainHome.css";
+import { Link } from "react-router-dom";
 
 const MainHome = () => {
   return (
@@ -16,12 +17,12 @@ const MainHome = () => {
         </div>
         <div className="container">
           <div className="row d-flex justify-content-center">
-            <a href="#" className="col card card-tipo-locales">
+            <Link to="/restaurantes"className="col card card-tipo-locales">
               <p style={{ color: "black" }}>Restaurantes</p>
               <div>
                 <img src={restauraFoto} alt="" className=" img-tipo-locales" />
               </div>
-            </a>
+            </Link>
             <a href="#" className="col card card-tipo-locales">
               <p style={{ color: "black" }}>Pedidos Ya Market</p>
               <div>

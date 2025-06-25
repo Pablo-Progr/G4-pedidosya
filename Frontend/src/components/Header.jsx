@@ -6,13 +6,14 @@ import Logo from "../img/logoPedidosYa.png";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import '../css/header.css'
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <Navbar expand="lg" className="row navbar-header">
-      <div className="col d-flex justify-content-center">
+      <Link to="/" className="col d-flex justify-content-center">
         <img src={Logo} className="img-logo" />
-      </div>
+      </Link>
       <div className="col-6 d-flex justify-content-center">
         <Form className="d-flex search-container">
           <Form.Control
@@ -33,7 +34,11 @@ const Header = () => {
         <div className="m-2 perfil">
           <NavDropdown title="Mi Perfil">
             <NavDropdown.Item href="#action3">Ayuda en Linea</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Iniciar Sesion</NavDropdown.Item>
+            <NavDropdown.Item to="/login">
+              <Link to="/login">
+                Iniciar Sesion
+              </Link>
+            </NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>
