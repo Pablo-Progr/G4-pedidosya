@@ -29,17 +29,3 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* 👈 importante */
 }
-
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white; /* 👈 importante */
-  z-index: 9999; /* 👈 alto para estar por encima */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  width: 400px; /* 👈 opcional para asegurar tamaño */
-  max-width: 90vw;
-}

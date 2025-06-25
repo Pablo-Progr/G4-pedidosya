@@ -3,6 +3,7 @@ import "../css/mainRestaurante.css"; // Importa tu archivo CSS para estilos
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ModalProducto from "../components/ModalProducto";
 
 const MainRestaurante = () => {
   const { id } = useParams();
@@ -38,6 +39,7 @@ const MainRestaurante = () => {
   return (
     <div>
       <p>Modal visible: {mostrarModal ? "Sí" : "No"}</p>
+      {console.log("mostrarModal", mostrarModal)}
       <h1>{local.nombre}</h1>
       <p>{local.direccion}</p>
 
@@ -84,57 +86,45 @@ const MainRestaurante = () => {
         </main>
       </div>
       {/* Modal para seleccionar cantidad y agregar al pedido */}
-      {mostrarModal && (
-        <div className="modal">
-          <button onClick={() => setMostrarModal(false)}>X</button>
-          <h2>{productoSeleccionado.nombre}</h2>
-          {productoSeleccionado.imagen && (
-            <img
-              src={productoSeleccionado.imagen}
-              alt={productoSeleccionado.nombre}
-            />
-          )}
-          <p>{productoSeleccionado.descripcion}</p>
-          <p>Precio unitario: ${productoSeleccionado.precio}</p>
-
-          <div>
-            <button onClick={() => setCantidad(Math.max(1, cantidad - 1))}>
-              -
-            </button>
-            <span>{cantidad}</span>
-            <button onClick={() => setCantidad(cantidad + 1)}>+</button>
-          </div>
-
-          <button
-            onClick={() => {
-              const productoConCantidad = {
-                ...productoSeleccionado,
-                cantidad,
-                total: productoSeleccionado.precio * cantidad,
-              };
-              setMiPedido([...miPedido, productoConCantidad]);
-              setMostrarModal(false);
-            }}
-          >
-            Agregar al pedido – ${productoSeleccionado.precio * cantidad}
-          </button>
-        </div>
-      )}
-
+      <ModalProducto
+        show={mostrarModal}
+        onCerrar={() => setMostrarModal(false)}
+        producto={productoSeleccionado}
+        cantidad={cantidad}
+        setCantidad={setCantidad}
+        onAgregar={() => {
+          const productoConCantidad = {
+            ...productoSeleccionado,
+            cantidad,
+            total: productoSeleccionado.precio * cantidad,
+          };
+          setMiPedido([...miPedido, productoConCantidad]);
+          setMostrarModal(false);
+        }}
+      />
       <div className="mi-pedido">
         <h3>Mi pedido</h3>
         {miPedido.length === 0 ? (
           <p>Tu pedido está vacío</p>
         ) : (
-          miPedido.map((item, index) => (
-            <div key={index}>
-              <span>{item.nombre}</span>
-              <span>
-                {item.cantidad} x ${item.precio}
-              </span>
-              <strong>= ${item.total}</strong>
+          <>
+            {miPedido.map((item, index) => (
+              <div key={index}>
+                <span>{item.nombre}</span>
+                <span>
+                  {item.cantidad} x ${item.precio}
+                </span>
+                <strong>= ${item.total}</strong>
+              </div>
+            ))}
+
+            {/* Subtotal general */}
+            <hr />
+            <div style={{ fontWeight: "bold", marginTop: "1rem" }}>
+              Total: $
+              {miPedido.reduce((acc, item) => acc + item.total, 0).toFixed(2)}
             </div>
-          ))
+          </>
         )}
       </div>
     </div>
