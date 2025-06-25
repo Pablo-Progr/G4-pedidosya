@@ -31,7 +31,6 @@ const MainAdmin = () => {
           {
             nombre: datos.nombre,
             direccion: datos.direccion,
-            idValoracion: datos.idValoracion,
             imagen: datos.imagen
           }
         );
@@ -78,17 +77,6 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese la descripción"
                 name="direccion"
-                onChange={handleChange}
-              ></Form.Control>
-            </FormGroup>
-            <FormGroup className="form-group-admin">
-              <Form.Label className="mb-3">
-                <h5>Valoracion</h5>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Ingrese la descripción"
-                name="idValoracion"
                 onChange={handleChange}
               ></Form.Control>
             </FormGroup>

@@ -21,14 +21,14 @@ const deleteLocal = (req, res) => {
 }
 
 const crearLocal = (req, res) => {
-    const { nombre, direccion, idValoracion, imagen } = req.body;
-    const consulta = "insert into Locales (nombre,direccion,idValoracion,imagen) values(?,?,?,?);"
+    const { nombre, direccion, imagen } = req.body;
+    const consulta = "insert into Locales (nombre,direccion,imagen) values(?,?,?);"
 
-    conection.query(consulta,[nombre,direccion,idValoracion,imagen ], (error, results) =>{
+    conection.query(consulta,[nombre,direccion,imagen ], (error, results) =>{
         if (error) throw res.status(500).send({message:"algo salio mal"})
            res.status(200).send({ message: "Local agregado correctamente" });
     })
-    res.status(200).send({ message: "Local agregado correctamente" });
+    
 }
 
 module.exports = { getLocales, deleteLocal, crearLocal }
