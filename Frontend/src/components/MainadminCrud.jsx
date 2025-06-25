@@ -50,24 +50,24 @@ const MainAdminCrud = () => {
           </thead>
           <tbody>
             {locales.map((locales, index) => (
-              <tr key={locales.id}>
+              <tr  key={locales.id}>
                 <td>{index}</td>
                 <td>{locales.nombre}</td>
                 <td>
                   <img
                     src={locales.imagen}
                     alt={locales.titulo}
-                    style={{ width: "100px" }}
+                    style={{ width: "60px" }}
                   />
                 </td>
                 <td>{locales.direccion}</td>
                 <td>{locales.idValoracion}</td>
                 <td>
-                  <Link className="btn btn-warning">
+                  <button className="btn btn-warning m-2">
                     <FaEdit />
-                  </Link>
+                  </button>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger m-2"
                     onClick={() => handleDelete(locales.idLocal)}
                   >
                     <FaTrash />

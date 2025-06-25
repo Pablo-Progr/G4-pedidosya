@@ -26,8 +26,9 @@ const crearLocal = (req, res) => {
 
     conection.query(consulta,[nombre,direccion,idValoracion,imagen ], (error, results) =>{
         if (error) throw res.status(500).send({message:"algo salio mal"})
-           res.status(200).send({ message: "Local agregado correctamente" });
+           
     })
+    res.status(200).send({ message: "Local agregado correctamente" });
 }
 
 module.exports = {getLocales,deleteLocal,crearLocal}
