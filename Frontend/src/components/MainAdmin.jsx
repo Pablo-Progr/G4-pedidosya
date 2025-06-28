@@ -9,8 +9,10 @@ const MainAdmin = () => {
     const initialState = {
       nombre: "",
       direccion: "",
-      idValoracion:"",
       imagen: "",
+      mail: "",
+      propietario:"",
+      
     };
   
  //Creo Estado Don Guardo El Objeto De Datos
@@ -35,7 +37,9 @@ const MainAdmin = () => {
           {
             nombre: datos.nombre,
             direccion: datos.direccion,
-            imagen: datos.imagen
+            imagen: datos.imagen,
+            mail: datos.mail,
+            propietario: datos.propietario
           }
         );
         if (response) {
@@ -92,6 +96,28 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese la imagen de portada"
                 name="imagen"
+                onChange={handleChange}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group className="form-group-admin">
+              <Form.Label className="mb-3">
+                <h5>Mail del Local</h5>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ingrese mail del Local"
+                name="mail"
+                onChange={handleChange}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group className="form-group-admin">
+              <Form.Label className="mb-3">
+                <h5>Propietario del Local</h5>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Ingrese la Nombre del Propietario"
+                name="propietario"
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ModalProducto from "../components/ModalProducto";
 import Header from "./Header";
+import useUsuarioStore from "../store/usuarioStore";
 
 const MainRestaurante = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const MainRestaurante = () => {
   const [miPedido, setMiPedido] = useState([]);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [busqueda, setBusqueda] = useState("");
+  const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -38,6 +40,33 @@ const MainRestaurante = () => {
     setCantidad(1);
     setMostrarModal(true);
   };
+
+  const realizarCompra = async () => {
+    try {
+      if (miPedido.length === 0) {
+        alert("Tu pedido está vacío");
+        return;
+      }
+
+      // Preparar los productos en el formato que espera el backend
+      const productosParaGuardar = miPedido.map((item) => ({
+        idProducto: item.idProducto,
+        cantidad: item.cantidad,
+        idUsuario: idUsuario,
+      }));
+
+      await axios.post("http://localhost:8000/carritos/crearCarrito", {
+        productos: productosParaGuardar,
+      });
+
+      alert("Compra realizada exitosamente");
+      setMiPedido([]);
+    } catch (error) {
+      console.error("Error al realizar la compra:", error);
+      alert("Hubo un error al procesar la compra");
+    }
+  };
+
   return (
     <div>
       <Header onBuscar={setBusqueda} />
@@ -149,6 +178,7 @@ const MainRestaurante = () => {
               Total: $
               {miPedido.reduce((acc, item) => acc + item.total, 0).toFixed(2)}
             </div>
+            <button onClick={realizarCompra}>Realizar compra</button>
           </>
         )}
       </div>
