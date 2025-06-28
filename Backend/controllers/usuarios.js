@@ -11,10 +11,6 @@ const loginUsuario = (req, res) => {
   `;
 
   conection.query(consulta, [mail, pass], (error, results) => {
-    if (error) {
-      console.error("Error en la consulta:", error);
-      return res.status(500).json({ mensaje: "Error en el servidor" });
-    }
 
     if (results.length === 0) {
       return res.status(401).json({ mensaje: "Credenciales incorrectas" });
