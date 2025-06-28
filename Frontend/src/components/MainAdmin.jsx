@@ -5,15 +5,18 @@ import "../css/mainadmin.css";
 
 const MainAdmin = () => {
 
+  //Creo Objeto De datos
     const initialState = {
       nombre: "",
       direccion: "",
       idValoracion:"",
       imagen: "",
     };
-
+  
+ //Creo Estado Don Guardo El Objeto De Datos
     const [datos, setDatos] = useState(initialState);
 
+  //Creo Funcion Para Tomar Nuevos Valores De Datos Y Guardarlos En El Estado
     const handleChange = (e) => {
       const { name, value } = e.target;
       setDatos({
@@ -22,6 +25,7 @@ const MainAdmin = () => {
       });
     };
 
+  //Funcion Para Tomar Los Datos Del Estado Y Pasarlos Al Backend Para Guardar En Base de Datos
     const handleSubmit = async (e) => {
       e.preventDefault();
 

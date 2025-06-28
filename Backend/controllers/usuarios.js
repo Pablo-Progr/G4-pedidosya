@@ -1,5 +1,6 @@
 const { conection } = require("../config/database")
 
+//Funcion Para Consultar Datos y Rol Del Usuario Para El Inicio De Sesion
 const loginUsuario = (req, res) => {
   const { mail, pass } = req.body;
 

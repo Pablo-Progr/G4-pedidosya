@@ -6,10 +6,10 @@ const RutaProtegidaUsuario = ({ children }) => {
   const rol = useUsuarioStore((state) => state.rol);
 
   if (!usuario || rol !== "usuario") {
-    return <Navigate to="/" />; // Si no está logueado o no es "usuario", lo manda al login
+    return <Navigate to="/" />; // Si No Esta Logueado o No Es "usuario", Lo Manda Al Login
   }
 
-  return children; // Si es usuario normal, muestra el contenido
+  return children; // Si Es Usuario, Muestra El Contenido
 };
 
 export default RutaProtegidaUsuario;

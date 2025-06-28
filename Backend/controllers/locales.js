@@ -1,4 +1,5 @@
 const { conection } = require("../config/database")
+
 //Funcion Para Traer Todos los locales
 const getLocales = (req, res) => {
 
@@ -10,11 +11,10 @@ const getLocales = (req, res) => {
     })
 }
 
-
 //Funcion Para Borrar Local Atravez De Su ID
 const deleteLocal = (req, res) => {
     const { id } = req.params
-    const consulta = "delete from locales where idLocal=?"
+    const consulta = "delete from locales where idLocal=?" 
 
     conection.query(consulta, [id], (error, results) => {
         if (error) throw error

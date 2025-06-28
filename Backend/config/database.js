@@ -1,7 +1,7 @@
-const mysql = require("mysql2") //importo libreria sql
+const mysql = require("mysql2") //Importo Libreria Sql
 
 
-const conection = mysql.createConnection({ //Guardo en variable datos para ingresar a la BD
+const conection = mysql.createConnection({ //Guardo En Variable Datos Para Ingresar a La BD
     host: "localhost",
     user: "pedidosya",
     password: "Pedidosya25",
@@ -9,4 +9,4 @@ const conection = mysql.createConnection({ //Guardo en variable datos para ingre
 })
 
 
-module.exports = { conection } //exporto mi conexion a la base de datos
+module.exports = { conection } //Exporto Mi Conexion a La Base De Datos
