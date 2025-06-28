@@ -5,7 +5,7 @@ const conection = mysql.createConnection({ //Guardo en variable datos para ingre
     host: "localhost",
     user: "pedidosya",
     password: "Pedidosya25",
-    database: "pedidosya"
+    database: "pedidosya2"
 })
 
 
