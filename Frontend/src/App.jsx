@@ -19,14 +19,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/Restaurantes" element={<Restaurantes />} />
-          <Route
-            path="/Restaurante/:id"
-            element={
-              <RutaProtegidaUsuario>
-                <Restaurante />
-              </RutaProtegidaUsuario>
-            }
-          />
+          <Route path="/Restaurante/:id" element={<Restaurante />} />
           <Route
             path="/Pedido"
             element={

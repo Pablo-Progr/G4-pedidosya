@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ModalProducto from "../components/ModalProducto";
+import Header from "./Header";
 
 const MainRestaurante = () => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const MainRestaurante = () => {
   const [cantidad, setCantidad] = useState(1);
   const [miPedido, setMiPedido] = useState([]);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -38,8 +40,8 @@ const MainRestaurante = () => {
   };
   return (
     <div>
-      <p>Modal visible: {mostrarModal ? "Sí" : "No"}</p>
-      {console.log("mostrarModal", mostrarModal)}
+      <Header onBuscar={setBusqueda} />
+      {console.log(busqueda)}
       <h1>{local.nombre}</h1>
       <p>{local.direccion}</p>
 
@@ -65,24 +67,28 @@ const MainRestaurante = () => {
         {/* Columna central con las cards */}
 
         <main className="product-wrapper">
-          {local.productos.map((producto, index) => (
-            <div
-              className="product-card"
-              key={producto.id || index} // Usa id si existe, si no, index
-              onClick={() => handleProductoClick(producto)}
-            >
-              <div className="restaurant-info">
-                <h3 className="restaurant-name">{producto.nombre}</h3>
-                <div className="restaurant-meta">
-                  <p>{producto.descripcion}</p>
+          {local.productos
+            .filter((producto) =>
+              producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+            )
+            .map((producto, index) => (
+              <div
+                className="product-card"
+                key={producto.id || index} // Usa id si existe, si no, index
+                onClick={() => handleProductoClick(producto)}
+              >
+                <div className="restaurant-info">
+                  <h3 className="restaurant-name">{producto.nombre}</h3>
+                  <div className="restaurant-meta">
+                    <p>{producto.descripcion}</p>
+                  </div>
+                </div>
+                <div>
+                  <span className="star">$</span>
+                  <span>{producto.precio}</span>
                 </div>
               </div>
-              <div>
-                <span className="star">$</span>
-                <span>{producto.precio}</span>
-              </div>
-            </div>
-          ))}
+            ))}
         </main>
       </div>
       {/* Modal para seleccionar cantidad y agregar al pedido */}
