@@ -6,7 +6,7 @@ const HeaderCarrito = () => {
   return (
     
       <div className="header-carrito">
-        <Link to="/">
+        <Link to="/home">
           <IoIosArrowBack className="icon-back"  />
         </Link>
         <img src={pedidosYa} alt="logo" />

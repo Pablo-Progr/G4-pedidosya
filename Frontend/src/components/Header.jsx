@@ -22,7 +22,7 @@ const Header = ({ onBuscar }) => {
 
   return (
     <Navbar expand="lg" className="row navbar-header">
-      <Link to="/" className="col d-flex justify-content-center">
+      <Link to="/home" className="col d-flex justify-content-center">
         <img src={Logo} className="img-logo" />
       </Link>
       <div className="col-6 d-flex justify-content-center">
