@@ -14,8 +14,12 @@ const obtenerLocalPorId = (req, res) => {
 
     const local = "SELECT * FROM locales WHERE idLocal = ?";
     const productos = `
-    SELECT * FROM productos
-     WHERE idLocal = ?
+    SELECT 
+      p.id, p.nombre, p.descripcion, p.precio, p.imagen,p.tiempoPreparado ,p.idLocal,
+      c.nombre AS categoria
+    FROM productos p
+ JOIN catproductos c ON p.IdCatProductos = c.idCatProducto
+    where idLocal = ?
   `;
 
     conection.query(local, [id], (err, localResult) => {
@@ -27,6 +31,8 @@ const obtenerLocalPorId = (req, res) => {
         if (localResult.length === 0) {
             return res.status(404).json({ error: "Local no encontrado" });
         }
+        const loc = localResult[0];
+
 
         conection.query(productos, [id], (err, productosResult) => {
             if (err) {
@@ -34,9 +40,20 @@ const obtenerLocalPorId = (req, res) => {
                 return res.status(500).json({ error: "Error al obtener los productos" });
             }
 
+            const productosPorCategoria = {};
+
+            productosResult.forEach((producto) => {
+                const categoria = producto.categoria;
+                if (!productosPorCategoria[categoria]) {
+                    productosPorCategoria[categoria] = [];
+                }
+                productosPorCategoria[categoria].push(producto);
+            });
+
+            // Devolver datos del local + productos agrupados
             res.json({
-                ...localResult[0],
-                productos: productosResult
+                ...loc,
+                productos: productosPorCategoria,
             });
         });
     });
