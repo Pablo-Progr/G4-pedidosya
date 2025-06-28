@@ -1,47 +1,38 @@
 import { useState } from "react";
 import { Button, Form, FormGroup } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import useAuthStore from "../store/authstore";
+import axios from "axios";
 import "../css/mainlogin.css";
 
 const MainLogin = ({ onLogin }) => {
-  const [usuario, setUsuario] = useState("");
-  const [contrasena, setContrasena] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const login = useAuthStore((state) => state.login);
+  const [mail, setMail] = useState("");
+  const [pass, setPass] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "http://localhost/proyectoBit/backend/loginAdmin.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: usuario, password: contrasena }),
-        credentials: "include",
-      }
-    );
-    const data = await response.json();
-    if (data.success) {
-      login();
-      navigate("/admin-amm");
-    } else {
-      setError("Usuario o contraseña incorrectos");
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "User or Passwrod",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/usuarios/login",
+        {
+          mail,
+          pass,
+        }
+      );
+
+      // El backend devuelve idUsuario, nombre, email y tipo (rol)
+      setError(null);
+      alert("Iniciaste sesion")
+    } catch (err) {
+      console.error("Error al iniciar sesión:", err);
+      setError("Credenciales incorrectas o error del servidor.");
     }
   };
 
   return (
     <div className="container-mains login">
       <div className="div-content-loginadmin">
-        <h2>Admin Login</h2>
+        <h2>Login</h2>
         <div className="content-form-admin">
           <Form className="form-admin" onSubmit={handleSubmit}>
             <FormGroup className="form-group-admin">
@@ -51,10 +42,9 @@ const MainLogin = ({ onLogin }) => {
               <Form.Control
                 type="text"
                 placeholder="Por favor, ingrese su usuario"
-                name="username"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
                 required
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
               />
             </FormGroup>
             <FormGroup className="form-group-admin">
@@ -64,16 +54,15 @@ const MainLogin = ({ onLogin }) => {
               <Form.Control
                 type="password"
                 placeholder="Por favor, ingrese su contraseña"
-                name="password"
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)}
                 required
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
             </FormGroup>
-            {error && <p className="error-message">{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <div className="d-flex justify-content-center">
               <Button className="m-3" type="submit">
-                Iniciar Sesión como Administrador
+                Iniciar Sesión
               </Button>
             </div>
           </Form>

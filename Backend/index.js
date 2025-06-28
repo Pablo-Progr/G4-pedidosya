@@ -3,6 +3,7 @@ const { conection } = require("./config/database")
 const cors = require("cors")
 const routesLocales = require("./routes/locales")
 const routesProductos = require("./routes/productos")
+const routesUsuarios = require("./routes/usuarios")
 
 const app = express() //Guardo la funcion de express en una variable
 
@@ -12,6 +13,7 @@ app.use(express.json()) //tramsformo en json
 app.use(cors())
 app.use("/", routesLocales)
 app.use("/pr", routesProductos) // uso las rutas de productos
+app.use("/usuarios", routesUsuarios)
 
 
 app.get("/", (req, res) => {        //Hago peticion get para corroborar mi conexion
