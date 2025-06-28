@@ -57,9 +57,13 @@ const MainRestaurante = () => {
           <div className="extremos">
             <h3>categoria</h3>
             <ul>
-              <li>Hamburguesa</li>
-              <li>Pizza</li>
-              <li>Milanesa</li>
+              {Object.keys(local.productos).map((categoria) => (
+                <li key={categoria}>
+                  <a href={`#${categoria.toLowerCase().replace(/\s/g, "-")}`}>
+                    {categoria}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </aside>
@@ -75,7 +79,11 @@ const MainRestaurante = () => {
             if (productosFiltrados.length === 0) return null;
 
             return (
-              <div key={categoria} className="categoria-section">
+              <div
+                key={categoria}
+                id={categoria.toLowerCase().replace(/\s/g, "-")}
+                className="categoria-section"
+              >
                 <h2>{categoria}</h2>
                 <div className="productos-categoria">
                   {productosFiltrados.map((producto) => (

@@ -15,7 +15,7 @@ const obtenerLocalPorId = (req, res) => {
     const local = "SELECT * FROM locales WHERE idLocal = ?";
     const productos = `
     SELECT 
-      p.id, p.nombre, p.descripcion, p.precio, p.imagen,p.tiempoPreparado ,p.idLocal,
+      p.idProducto, p.nombre, p.descripcion, p.precio, p.imagen,p.tiempoPreparado ,p.idLocal,
       c.nombre AS categoria
     FROM productos p
  JOIN catproductos c ON p.IdCatProductos = c.idCatProducto
