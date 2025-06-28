@@ -3,7 +3,7 @@ import { Button, Form, FormGroup } from "react-bootstrap";
 import axios from "axios";
 import "../css/mainlogin.css";
 
-const MainLogin = ({ onLogin }) => {
+const MainLogin = ({ handleLogin }) => {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(null);
@@ -20,9 +20,19 @@ const MainLogin = ({ onLogin }) => {
         }
       );
 
+      console.log(response.data)
       // El backend devuelve idUsuario, nombre, email y tipo (rol)
+      handleLogin(response.data); // Envías esos datos al padre o a Zustand
       setError(null);
-      alert("Iniciaste sesion")
+      if (response) {
+        Swal.fire({
+          position: "top-end",
+          icon: "Inicio de sesion exitoso",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
     } catch (err) {
       console.error("Error al iniciar sesión:", err);
       setError("Credenciales incorrectas o error del servidor.");

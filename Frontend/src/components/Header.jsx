@@ -6,9 +6,19 @@ import Logo from "../img/logoPedidosYa.png";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import "../css/header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useUsuarioStore from "../store/usuarioStore";
 
-const Header = ({onBuscar}) => {
+const Header = ({ onBuscar }) => {
+  
+  const usuario = useUsuarioStore((state) => state.usuario);
+  const cerrarSesion = useUsuarioStore((state) => state.cerrarSesion);
+  const navigate = useNavigate();
+
+  const handleCerrarSesion = () => {
+    cerrarSesion();
+    navigate("/home");
+  };
 
   return (
     <Navbar expand="lg" className="row navbar-header">
@@ -35,10 +45,16 @@ const Header = ({onBuscar}) => {
         </div>
         <div className="m-2 perfil">
           <NavDropdown title="Mi Perfil">
-            <NavDropdown.Item href="#action3">Ayuda en Linea</NavDropdown.Item>
-            <NavDropdown.Item to="/login">
-              <Link to="/login">Iniciar Sesion</Link>
-            </NavDropdown.Item>
+            {usuario ? (
+              <NavDropdown.Item onClick={handleCerrarSesion}>
+                Cerrar Sesión
+              </NavDropdown.Item>
+            ) : (
+              <NavDropdown.Item as={Link} to="/">
+                Iniciar Sesión
+              </NavDropdown.Item>
+            )}
+            <NavDropdown.Item href="#action3">Ayuda en Línea</NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useUsuarioStore from "../store/usuarioStore";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Logo from "../img/logoPedidosYa.png";
@@ -6,6 +7,16 @@ import { IoPersonOutline } from "react-icons/io5";
 import "../css/headerAdmin.css";
 
 const HeaderAdmin = () => {
+
+  const usuario = useUsuarioStore((state) => state.usuario);
+  const cerrarSesion = useUsuarioStore((state) => state.cerrarSesion);
+  const navigate = useNavigate();
+
+  const handleCerrarSesion = () => {
+    cerrarSesion();
+    navigate("/home");
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="row navbar-header">
@@ -26,11 +37,17 @@ const HeaderAdmin = () => {
           </div>
           <div className="m-2 perfil">
             <NavDropdown title="Mi Perfil">
+              {usuario ? (
+                <NavDropdown.Item onClick={handleCerrarSesion}>
+                  Cerrar Sesión
+                </NavDropdown.Item>
+              ) : (
+                <NavDropdown.Item as={Link} to="/">
+                  Iniciar Sesión
+                </NavDropdown.Item>
+              )}
               <NavDropdown.Item href="#action3">
-                Ayuda en Linea
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Iniciar Sesion
+                Ayuda en Línea
               </NavDropdown.Item>
             </NavDropdown>
           </div>

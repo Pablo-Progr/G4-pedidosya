@@ -24,7 +24,7 @@ const loginUsuario = (req, res) => {
     res.json({
       idUsuario: usuario.idUsuario,
       nombre: usuario.nombre,
-      email: usuario.email,
+      mail: usuario.mail,
       tipo: usuario.tipo // acá recibís si es "admin" o "usuario"
     });
   });
