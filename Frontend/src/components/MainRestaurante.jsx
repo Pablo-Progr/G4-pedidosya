@@ -96,28 +96,39 @@ const MainRestaurante = () => {
         {/* Columna central con las cards */}
 
         <main className="product-wrapper">
-          {local.productos
-            .filter((producto) =>
+          {Object.entries(local.productos).map(([categoria, productos]) => {
+            const productosFiltrados = productos.filter((producto) =>
               producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
-            )
-            .map((producto, index) => (
-              <div
-                className="product-card"
-                key={producto.id || index} // Usa id si existe, si no, index
-                onClick={() => handleProductoClick(producto)}
-              >
-                <div className="restaurant-info">
-                  <h3 className="restaurant-name">{producto.nombre}</h3>
-                  <div className="restaurant-meta">
-                    <p>{producto.descripcion}</p>
-                  </div>
-                </div>
-                <div>
-                  <span className="star">$</span>
-                  <span>{producto.precio}</span>
+            );
+
+            if (productosFiltrados.length === 0) return null;
+
+            return (
+              <div key={categoria} className="categoria-section">
+                <h2>{categoria}</h2>
+                <div className="productos-categoria">
+                  {productosFiltrados.map((producto) => (
+                    <div
+                      className="product-card"
+                      key={producto.id}
+                      onClick={() => handleProductoClick(producto)}
+                    >
+                      <div className="restaurant-info">
+                        <h3 className="restaurant-name">{producto.nombre}</h3>
+                        <div className="restaurant-meta">
+                          <p>{producto.descripcion}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <span className="star">$</span>
+                        <span>{producto.precio}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            );
+          })}
         </main>
       </div>
       {/* Modal para seleccionar cantidad y agregar al pedido */}
