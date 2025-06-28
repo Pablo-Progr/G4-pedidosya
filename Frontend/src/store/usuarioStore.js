@@ -1,17 +1,19 @@
-// store/userStore.js
-import { create } from 'zustand';
+import { create } from 'zustand'; //Importo Libreria De Zustand
 
+// Función Crea Un Estado Global Para Gestionar La Sesión De Un Usuario
 const useUsuarioStore = create((set) => ({
   usuario: null,
   rol: null,
 
+//Guarda Datos Del Uusuario
   iniciarSesion: (datosUsuario) => {
     set({
       usuario: datosUsuario.nombre,
-      rol: datosUsuario.tipo, // Asumimos que backend devuelve "tipo" con "admin" o "cliente"
+      rol: datosUsuario.tipo, 
     });
   },
 
+ //Resetea Los Datos Del Inicio De Sesion 
   cerrarSesion: () => {
     set({
       usuario: null,

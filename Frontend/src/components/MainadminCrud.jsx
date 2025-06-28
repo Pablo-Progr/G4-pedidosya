@@ -7,10 +7,12 @@ import "../css/mainadmin.css";
 import EditModal from "./EditModal";
 
 const MainAdminCrud = () => {
+  //Creo Estados Para Locales y Modal Para Local Seleccionado  
   const [locales, setLocales] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [localSeleccionado, setLocalSeleccionado] = useState(null);
 
+  //Funcion Para Mostrar Los Locales
   const fetchLocales = async () => {
     try {
       const response = await axios.get("http://localhost:8000/locales");
@@ -20,12 +22,12 @@ const MainAdminCrud = () => {
     }
   };
 
-  
+  //Utilizamos UseEffect Para Ejecutar La Funcion Una Sola Vez
   useEffect(() => {
     fetchLocales();
   }, []);
 
-  //Fncion Con Axios Para Eliminar Local
+  //Fncion Para Eliminar Local
   const handleDelete = async (idLocal) => {
     try {
       const response = await axios.delete(`http://localhost:8000/locales/eliminar/${idLocal}`);
@@ -106,7 +108,7 @@ const MainAdminCrud = () => {
         </Table>
       </div>
 
-      {/* Modal para Edición De Local */}
+      {/* Modal Para Edición De Local */}
       <EditModal
         show={modalVisible}
         onClose={cerrarModal}

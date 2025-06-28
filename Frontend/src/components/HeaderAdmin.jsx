@@ -7,11 +7,12 @@ import { IoPersonOutline } from "react-icons/io5";
 import "../css/headerAdmin.css";
 
 const HeaderAdmin = () => {
-
+  //Creo Variable Con Datos y Funcio Importadas Desde Zusatand
   const usuario = useUsuarioStore((state) => state.usuario);
   const cerrarSesion = useUsuarioStore((state) => state.cerrarSesion);
   const navigate = useNavigate();
 
+  //Funcion Para Cerrar Sesion Utilizando Funcion De Zustand
   const handleCerrarSesion = () => {
     cerrarSesion();
     navigate("/home");

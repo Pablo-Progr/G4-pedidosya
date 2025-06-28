@@ -4,10 +4,12 @@ import axios from "axios";
 import "../css/mainlogin.css";
 
 const MainLogin = ({ handleLogin }) => {
+  //Creamos Estados Para El Inicio De Sesion
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState(null);
 
+  //Funcion Para Enviar Datos Al Backend Para El Inicio De Sesion
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,8 +23,8 @@ const MainLogin = ({ handleLogin }) => {
       );
 
       console.log(response.data)
-      // El backend devuelve idUsuario, nombre, email y tipo (rol)
-      handleLogin(response.data); // Envías esos datos al padre o a Zustand
+
+      handleLogin(response.data); // Envia Esos Datos A Zustand 
       setError(null);
 
       if (response) {

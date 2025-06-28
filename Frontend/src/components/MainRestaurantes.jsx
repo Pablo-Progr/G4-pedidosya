@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const MainRestaurantes = () => {
+  //Creo Estado Para Locales
   const [locales, setLocales] = useState([]);
 
+  //Use Effect Para Ejecutar La funcion Mostrar Productos Una Sola Vez
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -21,6 +23,7 @@ const MainRestaurantes = () => {
     fetchArticles();
   }, []);
 
+  //Funcion Para Buscar Productos y Actualizar La Vista De Los Productos Segun Lo Que Se Ingrese
   const buscarLocales = async (termino) => {
     try {
       const url = termino
@@ -34,13 +37,14 @@ const MainRestaurantes = () => {
     }
   };
 
+  //UseEffct Para Ejecutar Funcion BuscarLocales
   useEffect(() => {
-    buscarLocales(""); // Carga inicial
+    buscarLocales(""); 
   }, []);
 
   return (
     <>
-      <Header onBuscar={buscarLocales} />
+      <Header onBuscar={buscarLocales} /> {/*Paso Por Props La Funcion Buscar Pruductos A Mi Componente Header*/ }
       <div className="page-layout">
         {/* Columna izquierda */}
         <aside className="sidebar left-sidebar">
