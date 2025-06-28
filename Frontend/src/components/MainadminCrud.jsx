@@ -70,7 +70,8 @@ const MainAdminCrud = () => {
               <th>Nombre</th>
               <th>Imagen</th>
               <th>Dirección</th>
-              <th>Valoración</th>
+              <th>Propietario</th>
+              <th>Mail</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -87,7 +88,8 @@ const MainAdminCrud = () => {
                   />
                 </td>
                 <td>{local.direccion}</td>
-                <td>{local.idValoracion}</td>
+                <td>{local.propietario}</td>
+                <td>{local.mail}</td>
                 <td>
                   <button
                     className="btn btn-warning m-2"

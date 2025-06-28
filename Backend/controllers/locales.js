@@ -24,10 +24,10 @@ const deleteLocal = (req, res) => {
 
 //Funcion Para Crear Local
 const crearLocal = (req, res) => {
-    const { nombre, direccion, imagen } = req.body;
-    const consulta = "insert into Locales (nombre,direccion,imagen) values(?,?,?);"
+    const { nombre, direccion, imagen,mail , propietario} = req.body;
+    const consulta = "insert into Locales (nombre,direccion,imagen, propietario, mail) values(?,?,?,?,?);"
 
-    conection.query(consulta,[nombre,direccion,imagen ], (error, results) =>{
+    conection.query(consulta,[nombre,direccion,imagen, propietario, mail ], (error, results) =>{
         if (error) res.status(500).send({message:"algo salio mal"})
            
     })
@@ -37,11 +37,11 @@ const crearLocal = (req, res) => {
 //Funcion para Editar Local
 const editarLocal = (req, res) => {
     const { id } = req.params;
-    const { nombre, direccion, imagen } = req.body;
+    const { nombre, direccion, imagen, mail, propietario } = req.body;
   
-    const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ? WHERE idLocal = ?";
+    const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ?, mail =? , propietario = ? WHERE idLocal = ?";
   
-    conection.query (consulta, [nombre, direccion, imagen, id], (err, result) => {
+    conection.query (consulta, [nombre, direccion, imagen, mail, propietario, id], (err, result) => {
       if (err) {
         console.error("Error al actualizar el local:", err);
         return res.status(500).json({ mensaje: "Error al actualizar el local" });

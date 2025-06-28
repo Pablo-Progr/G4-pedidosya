@@ -6,6 +6,8 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
   const [nombre, setNombre] = useState(""); 
   const [direccion, setDireccion] = useState("");
   const [imagen, setImagen] = useState("");
+  const [propietario, setPropietario] = useState("");
+  const [mail, setMail] = useState("");
 
   //UseEffect Para Que Se Ejecute cuando cuadno cambie la variable
   useEffect(() => {
@@ -13,6 +15,8 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
       setNombre(localData.nombre);
       setDireccion(localData.direccion);
       setImagen(localData.imagen);
+      setPropietario(localData.propietario);
+      setMail(localData.mail);
     }
   }, [localData]);
 
@@ -26,6 +30,8 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
           nombre,
           direccion,
           imagen,
+          propietario,
+          mail,
         }
       );
       onUpdate();
@@ -57,7 +63,7 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
           <form onSubmit={handleSubmit}>
             <div
               className="modal-header"
-              style={{ backgroundColor: "#e60050", color:" white" }}
+              style={{ backgroundColor: "#e60050", color: " white" }}
             >
               <h5 className="modal-title">Editar Local</h5>
               <button
@@ -94,6 +100,24 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
                   className="form-control"
                   value={imagen}
                   onChange={(e) => setImagen(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Propietario</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={propietario}
+                  onChange={(e) => setPropietario(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Mail</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={mail}
+                  onChange={(e) => setMail(e.target.value)}
                 />
               </div>
             </div>
