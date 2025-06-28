@@ -20,7 +20,7 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
+      const response = await axios.put(
         `http://localhost:8000/locales/editar/${localData.idLocal}`,
         {
           nombre,
@@ -30,6 +30,15 @@ const EditModal = ({ show, onClose, localData, onUpdate }) => {
       );
       onUpdate();
       onClose();
+      if (response) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Publicación actualizada correctamente",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } 
     } catch (error) {
       console.error("Error actualizando local:", error);
     }

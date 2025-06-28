@@ -28,8 +28,18 @@ const MainAdminCrud = () => {
   //Fncion Con Axios Para Eliminar Local
   const handleDelete = async (idLocal) => {
     try {
-      await axios.delete(`http://localhost:8000/locales/eliminar/${idLocal}`);
+      const response = await axios.delete(`http://localhost:8000/locales/eliminar/${idLocal}`);
       setLocales(locales.filter((local) => local.idLocal !== idLocal));
+      
+      if (response) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Publicación eliminada correctamente",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } 
     } catch (error) {
       console.error("Error eliminando local:", error);
     }

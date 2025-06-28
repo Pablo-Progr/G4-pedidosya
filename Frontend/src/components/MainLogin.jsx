@@ -24,18 +24,27 @@ const MainLogin = ({ handleLogin }) => {
       // El backend devuelve idUsuario, nombre, email y tipo (rol)
       handleLogin(response.data); // Envías esos datos al padre o a Zustand
       setError(null);
+
       if (response) {
         Swal.fire({
-          position: "top-end",
-          icon: "Inicio de sesion exitoso",
+          position: "center",
+          icon: "success",
+          title: "Iniciaste sesion",
           showConfirmButton: false,
           timer: 1500,
-        });
+        })
       }
 
     } catch (err) {
       console.error("Error al iniciar sesión:", err);
-      setError("Credenciales incorrectas o error del servidor.");
+      setError("Credenciales incorrectas ");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Usuario o contrasenia incorrecta",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
