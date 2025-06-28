@@ -38,3 +38,138 @@ a div{
     padding-top: 20px;
     background-color: rgb(243, 242, 244);
 }
+
+.contenedor-chica-pizza {
+  background-color: #00dbff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  margin: 30px auto; /* Centrar horizontalmente */
+  max-width: 950px; /* Controla el ancho máximo (ajusta según prefieras) */
+  width: 100%;      /* Para que sea responsive y no se pase en mobile */
+}
+
+.chica-pizza-imagen {
+    width: 320px;
+    height: auto;
+    flex-shrink: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.info-pizza {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.icono-circulo {
+  background-color: white;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.icono-chica-pizza {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.titulo-info {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.texto-info {
+  margin: 4px 0 0 0;
+  max-width: 600px;
+  color: black;
+}
+.titulo-promociones {
+  margin: 30px 0 20px 0;
+  margin-left: 30px;
+  font-weight: 700;
+  font-size: 1.2rem; /* Reducido */
+}
+.contenedor-promo {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contenedor-promo .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 340px;
+  height: 120px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contenedor-promo .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-promo {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-promo h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-promo p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+}
+
+/* Imagen */
+.contenedor-promo .card img {
+  width: 140px;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Colores */
+.card-amarilla {
+  background-color: #ffeb3b;
+  color: black;
+}
+
+.card-rosada {
+  background-color: #f9166a;
+  color: white;
+}
+
+.card-azul {
+  background-color: #1565f9;
+  color: white;
+}

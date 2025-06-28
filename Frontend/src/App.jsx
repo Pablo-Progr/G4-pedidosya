@@ -11,6 +11,7 @@ import Carrito from "./pages/Carrito";
 import Autenticacion from "./components/Autenticacion";
 import RutaProtegidaAdmin from "./components/RutaProtegidaAdmin";
 import RutaProtegidaUsuario from "./components/RutaProtegidausuario";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/Restaurantes" element={<Restaurantes />} />
+          <Route path="/error" element={<Error />} />
           <Route
             path="/Restaurante/:id"
             element={
