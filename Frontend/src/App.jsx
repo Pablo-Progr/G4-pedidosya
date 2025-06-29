@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Restaurantes from "./pages/Restaurantes";
 import Restaurante from "./pages/Restaurante";
 import Pedido from "./pages/Pedido";
+import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import AdminCrud from "./pages/AdminCrud";
 import Carrito from "./pages/Carrito";
@@ -23,7 +24,7 @@ function App() {
           <Route
             path="/Restaurante/:id"
             element={
-              <RutaProtegidaUsuario> 
+              <RutaProtegidaUsuario>
                 <Restaurante />
               </RutaProtegidaUsuario>
             }

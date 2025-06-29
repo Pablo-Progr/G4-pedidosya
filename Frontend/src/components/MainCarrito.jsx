@@ -1,10 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
 import "../css/maincarrito.css";
+import useUsuarioStore from "../store/usuarioStore";
 
 const MainCarrito = () => {
+  const [productos, setProductos] = useState([]);
+  const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
+
+  const fetchPedido = async () => {
+    try {
+      const response = await axios.get(
+       `http://localhost:8000/carritos/usuario/${idUsuario}`
+      );
+      setProductos(response.data);
+    } catch (error) {
+      console.error("Error fetching productos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPedido();
+  }, []);
+
+  const calcularTotal = () => {
+    return productos.reduce(
+      (acc, item) => acc + item.precio * item.cantidad,
+      0
+    );
+  };
 
 
   return (

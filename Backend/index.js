@@ -14,7 +14,7 @@ app.use(express.json()) //tramsformo en json
 app.use(cors())
 app.use("/", routesLocales)
 app.use("/pr", routesProductos) // uso las rutas de productos
-app.use("/", routesUsuarios)
+app.use("/usuarios", routesUsuarios)
 app.use("/", routesCarrito)
 
 
