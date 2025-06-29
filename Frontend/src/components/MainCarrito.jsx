@@ -6,8 +6,6 @@ import "../css/maincarrito.css";
 
 const MainCarrito = () => {
 
-  
-
 
   return (
     <div className="main-carrito">
