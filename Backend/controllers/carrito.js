@@ -33,7 +33,28 @@ const obtenerCarritos = (req, res) => {
   });
 };
 
+const obtenerCarritoPorUsuario = (req, res) => {
+    const idUsuario = req.params.idUsuario;
+  
+    const query = `
+      SELECT c.idCarrito, p.idProducto, p.nombre, p.precio, c.cantidad
+      FROM carrito c
+      JOIN productos p ON c.idProducto = p.idProducto
+      WHERE c.idUsuario = ?
+    `;
+  
+    db.query(query, [idUsuario], (err, results) => {
+        if (err) {
+            console.error("Error al obtener carrito:", err);
+            return res.status(500).json({ error: "Error del servidor" });
+        }
+  
+        res.json(results);
+    })
+};
+
 module.exports = {
   crearCarrito,
-  obtenerCarritos,
-};
+    obtenerCarritos,
+    obtenerCarritoPorUsuario
+}

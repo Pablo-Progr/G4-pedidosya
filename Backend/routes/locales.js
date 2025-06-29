@@ -4,6 +4,7 @@ const { getLocales, crearLocal, deleteLocal, editarLocal, buscarLocales } = requ
 
 const router = express.Router()
 
+//Creo Rutas 
 router.get("/locales", getLocales)
 router.post("/locales/crearLocal", crearLocal)
 router.delete("/locales/eliminar/:id", deleteLocal)

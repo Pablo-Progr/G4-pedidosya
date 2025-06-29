@@ -24,16 +24,6 @@ const deleteLocal = (req, res) => {
 
 //Funcion Para Crear Local
 const crearLocal = (req, res) => {
-<<<<<<< HEAD
-  const { nombre, direccion, imagen } = req.body;
-  const consulta = "insert into Locales (nombre,direccion,imagen) values(?,?,?);"
-
-  conection.query(consulta, [nombre, direccion, imagen], (error, results) => {
-    if (error) res.status(500).send({ message: "algo salio mal" })
-
-  })
-  res.status(200).send({ message: "Local agregado correctamente" });
-=======
     const { nombre, direccion, imagen,mail , propietario} = req.body;
     const consulta = "insert into Locales (nombre,direccion,imagen, propietario, mail) values(?,?,?,?,?);"
 
@@ -42,25 +32,10 @@ const crearLocal = (req, res) => {
            
     })
     res.status(200).send({ message: "Local agregado correctamente" });
->>>>>>> dd262a54a41e9eca4c4a51227d0a9139fbda19f6
 }
 
 //Funcion para Editar Local
 const editarLocal = (req, res) => {
-<<<<<<< HEAD
-  const { id } = req.params;
-  const { nombre, direccion, imagen } = req.body;
-
-  const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ? WHERE idLocal = ?";
-
-  conection.query(consulta, [nombre, direccion, imagen, id], (err, result) => {
-    if (err) {
-      console.error("Error al actualizar el local:", err);
-      return res.status(500).json({ mensaje: "Error al actualizar el local" });
-    }
-    res.json({ mensaje: "Local actualizado correctamente" });
-  });
-=======
     const { id } = req.params;
     const { nombre, direccion, imagen, mail, propietario } = req.body;
   
@@ -73,7 +48,6 @@ const editarLocal = (req, res) => {
       }
       res.json({ mensaje: "Local actualizado correctamente" });
     });
->>>>>>> dd262a54a41e9eca4c4a51227d0a9139fbda19f6
 };
 
 //Funcion Para buscar Restaurante

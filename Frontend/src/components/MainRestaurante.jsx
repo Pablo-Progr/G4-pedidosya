@@ -62,7 +62,6 @@ const MainRestaurante = () => {
         productos: productosParaGuardar,
       });
 
-      alert("Compra realizada exitosamente");
       setMiPedido([]);
       navigate("/carrito")
     } catch (error) {

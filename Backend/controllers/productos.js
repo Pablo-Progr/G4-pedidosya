@@ -59,17 +59,7 @@ const obtenerLocalPorId = (req, res) => {
     });
 }
 
-const getProducto = () => {
-
-}
-
-const deleteProducto = () => {
-
-}
-
-const updateProducto = () => {
-
-}
 
 
-module.exports = { getProductos, getProducto, deleteProducto, obtenerLocalPorId }
+
+module.exports = { getProductos, obtenerLocalPorId }
