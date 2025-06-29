@@ -34,7 +34,6 @@ body {
 
 /* Productos en el centro */
 .product-wrapper {
-    display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columnas */
   gap: 1.5rem;
   flex: 1;
@@ -51,7 +50,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 300px;
+  width: 45%;
 }
 
 .product-card:hover {
@@ -113,4 +112,16 @@ body {
   justify-content: space-between;
   margin-bottom: 0.75rem;
   font-size: 0.95rem;
+}
+
+.categoria-section {
+  margin-bottom: 2rem;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.productos-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
