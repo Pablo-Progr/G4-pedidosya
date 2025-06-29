@@ -8,7 +8,7 @@ const useUsuarioStore = create((set) => ({
 //Guarda Datos Del Uusuario
   iniciarSesion: (datosUsuario) => {
     set({
-      usuario: datosUsuario.nombre,
+      usuario: datosUsuario,
       rol: datosUsuario.tipo, 
     });
   },
