@@ -11,7 +11,7 @@ const crearCarrito = (req, res) => {
 
   const consulta = "INSERT INTO carrito (idUsuario, idProducto, cantidad) VALUES ?";
 
-    conection.query(consulta, [valores], (error, resultado) => {
+  conection.query(consulta, [valores], (error, resultado) => {
     if (error) {
       console.error("Error al insertar en carrito:", error);
       return res.status(500).json({ mensaje: "Error al procesar el pedido" });
@@ -32,8 +32,70 @@ const obtenerCarritos = (req, res) => {
     res.json(resultados);
   });
 };
+const obtenerCarritoPorUsuario = (req, res) => {
+  const { idUsuario } = req.params;
+
+  const sql = `
+    SELECT c.*, p.nombre, p.precio AS precio_unitario
+    FROM carrito c
+    JOIN productos p ON c.idProducto = p.idProducto
+    WHERE c.idUsuario = ?
+  `;
+
+  conection.query(sql, [idUsuario], (err, resultados) => {
+    if (err) {
+      console.error("Error al obtener el carrito del usuario:", err);
+      return res.status(500).json({ error: "Error interno" });
+    }
+
+    res.json(resultados);
+  });
+};
+
+const confirmarCompra = (req, res) => {
+  const { idUsuario, aclaracion, metodoPago } = req.body;
+  const fechaActual = new Date();
+
+  const queryCarrito = `
+  SELECT c.*, p.precio AS precio_unitario
+  FROM carrito c
+  JOIN productos p ON c.idProducto = p.idProducto
+  WHERE c.idUsuario = ?
+`;
+  conection.query(queryCarrito, [idUsuario], (err, productos) => {
+    if (err) return res.status(500).json({ error: "Error al consultar el carrito" });
+
+    if (productos.length === 0) {
+      return res.status(400).json({ error: "El carrito está vacío" });
+    }
+
+    const insertQuery = `
+      INSERT INTO pedidos (fecha, cantidad, idUsuario, idProducto, aclaracion, total, metodoPago)
+      VALUES ?
+    `;
+
+    const valores = productos.map((p) => [
+      fechaActual,
+      p.cantidad,
+      idUsuario,
+      p.idProducto,
+      aclaracion,
+      p.cantidad * p.precio_unitario,
+      metodoPago,
+    ]);
+
+    conection.query(insertQuery, [valores], (err) => {
+      if (err) return res.status(500).json({ error: "Error al insertar en recibos" });
+
+      conection.query("DELETE FROM carrito WHERE idUsuario = ?", [idUsuario]);
+
+      res.json({ mensaje: "Compra registrada con éxito" });
+    });
+  });
+};
 
 module.exports = {
   crearCarrito,
-  obtenerCarritos,
+  obtenerCarritos, confirmarCompra,
+  obtenerCarritoPorUsuario
 };

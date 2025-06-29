@@ -23,7 +23,7 @@ function App() {
           <Route
             path="/Restaurante/:id"
             element={
-              <RutaProtegidaUsuario> 
+              <RutaProtegidaUsuario>
                 <Restaurante />
               </RutaProtegidaUsuario>
             }

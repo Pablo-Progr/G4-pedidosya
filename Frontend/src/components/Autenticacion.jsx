@@ -23,12 +23,12 @@ const Autenticacion = () => {
       if (rol === "admin") {
         navigate("/Admin");
       } else if (rol === "usuario") {
-        navigate("/restaurantes");
+        navigate("/Home");
       }
     }
   }, [usuario, rol, navigate]);
 
-  return <MainLogin handleLogin={handleLogin} />; 
+  return <MainLogin handleLogin={handleLogin} />;
 };
 
 export default Autenticacion;

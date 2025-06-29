@@ -1,71 +1,66 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import "../css/maincarrito.css";
 import useUsuarioStore from "../store/usuarioStore";
 
 const MainCarrito = () => {
-  const [productos, setProductos] = useState([]);
+  const [aclaracion, setAclaracion] = useState("");
+  const [metodoPago, setMetodoPago] = useState("efectivo");
+  const [carrito, setCarrito] = useState([]);
   const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
+  console.log("ID Usuario:", idUsuario);
 
-  const fetchPedido = async () => {
+  useEffect(() => {
+    const fetchCarrito = async () => {
+      const res = await axios.get(`http://localhost:8000/carrito/${idUsuario}`);
+      setCarrito(res.data);
+    };
+    fetchCarrito();
+  }, [idUsuario]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.get(
-        `http://localhost:8000/carritos/usuario/${idUsuario}`
-      );
-      setProductos(response.data);
+      await axios.post("http://localhost:8000/confirmar", {
+        idUsuario,
+        aclaracion,
+        metodoPago,
+      });
+      alert("Compra confirmada");
     } catch (error) {
-      console.error("Error fetching productos:", error);
+      alert("Error al confirmar la compra" + error.message);
     }
   };
 
-  useEffect(() => {
-    fetchPedido();
-  }, []);
-
-  const calcularTotal = () => {
-    return productos.reduce(
-      (acc, item) => acc + item.precio * item.cantidad,
-      0
-    );
-  };
-
   return (
-    <div className="main-carrito">
-      <div className="cardProductos">
-        <h2>Mi pedido</h2>
-        <div className="radio-group">
-          {productos.length === 0 ? (
-            <p>No hay productos en el carrito.</p>
-          ) : (
-            productos.map((producto) => (
-              <div key={producto.idProducto}>
-                <span>{producto.nombre}</span> -<span> ${producto.precio}</span>{" "}
-                x<span> {producto.cantidad}</span> =
-                <strong> ${producto.precio * producto.cantidad}</strong>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
+    <div>
+      <h2>Confirmar compra</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Aclaraciones"
+          value={aclaracion}
+          onChange={(e) => setAclaracion(e.target.value)}
+        />
+        <select
+          value={metodoPago}
+          onChange={(e) => setMetodoPago(e.target.value)}
+        >
+          <option value="">Método de pago</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Tarjeta">Tarjeta</option>
+        </select>
+        <button type="submit">Confirmar compra</button>
+      </form>
 
-      <div className="cardResumen">
-        <h2>Mostaza Pellegrini</h2>
-        <p>5 - 20 min · Mínimo $5.099</p>
-        <div className="summary-item">
-          <span>Subtotal</span>
-          <span>${calcularTotal()}</span>
+      <h3>Carrito</h3>
+      {carrito.map((p) => (
+        <div key={p.id}>
+          <span>{p.nombre}</span> —{" "}
+          <span>
+            {p.cantidad} x ${p.precio_unitario}
+          </span>
         </div>
-        <div className="summary-item">
-          <span>Costo de Envío</span>
-          <span>$1.129</span>
-        </div>
-        <div className="summary-item">
-          <span>Tarifa de servicio</span>
-          <span>$340</span>
-        </div>
-        <button className="coupon-btn">Pasar a finalizar compra</button>
-        <div className="total">Total ${calcularTotal() + 1129 + 340}</div>
-      </div>
+      ))}
     </div>
   );
 };

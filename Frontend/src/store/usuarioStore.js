@@ -1,25 +1,28 @@
-import { create } from 'zustand'; //Importo Libreria De Zustand
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-// Función Crea Un Estado Global Para Gestionar La Sesión De Un Usuario
-const useUsuarioStore = create((set) => ({
-  usuario: null,
-  rol: null,
-
-//Guarda Datos Del Uusuario
-  iniciarSesion: (datosUsuario) => {
-    set({
-      usuario: datosUsuario,
-      rol: datosUsuario.tipo, 
-    });
-  },
-
- //Resetea Los Datos Del Inicio De Sesion 
-  cerrarSesion: () => {
-    set({
+const useUsuarioStore = create(
+  persist(
+    (set) => ({
       usuario: null,
       rol: null,
-    });
-  },
-}));
+      iniciarSesion: (datosUsuario) => {
+        set({
+          usuario: datosUsuario,
+          rol: datosUsuario.tipo,
+        });
+      },
+      cerrarSesion: () => {
+        set({
+          usuario: null,
+          rol: null,
+        });
+      },
+    }),
+    {
+      name: 'usuario-storage', // esto guarda el estado en localStorage
+    }
+  )
+);
 
 export default useUsuarioStore;

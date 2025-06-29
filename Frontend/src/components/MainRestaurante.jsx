@@ -6,7 +6,7 @@ import axios from "axios";
 import ModalProducto from "../components/ModalProducto";
 import Header from "./Header";
 import useUsuarioStore from "../store/usuarioStore";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainRestaurante = () => {
   const { id } = useParams();
@@ -18,6 +18,7 @@ const MainRestaurante = () => {
   const [busqueda, setBusqueda] = useState("");
   const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
 
+  console.log("ID Usuario:", idUsuario);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const MainRestaurante = () => {
 
       alert("Compra realizada exitosamente");
       setMiPedido([]);
-      navigate("/carrito")
+      navigate("/carrito");
     } catch (error) {
       console.error("Error al realizar la compra:", error);
       alert("Hubo un error al procesar la compra");
