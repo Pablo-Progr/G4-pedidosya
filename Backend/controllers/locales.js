@@ -24,30 +24,30 @@ const deleteLocal = (req, res) => {
 
 //Funcion Para Crear Local
 const crearLocal = (req, res) => {
-    const { nombre, direccion, imagen,mail , propietario} = req.body;
-    const consulta = "insert into Locales (nombre,direccion,imagen, propietario, mail) values(?,?,?,?,?);"
+  const { nombre, direccion, imagen, mail, propietario } = req.body;
+  const consulta = "insert into Locales (nombre,direccion,imagen, propietario, mail) values(?,?,?,?,?);"
 
-    conection.query(consulta,[nombre,direccion,imagen, propietario, mail ], (error, results) =>{
-        if (error) res.status(500).send({message:"algo salio mal"})
-           
-    })
-    res.status(200).send({ message: "Local agregado correctamente" });
+  conection.query(consulta, [nombre, direccion, imagen, propietario, mail], (error, results) => {
+    if (error) res.status(500).send({ message: "algo salio mal" })
+
+  })
+  res.status(200).send({ message: "Local agregado correctamente" });
 }
 
 //Funcion para Editar Local
 const editarLocal = (req, res) => {
-    const { id } = req.params;
-    const { nombre, direccion, imagen, mail, propietario } = req.body;
-  
-    const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ?, mail =? , propietario = ? WHERE idLocal = ?";
-  
-    conection.query (consulta, [nombre, direccion, imagen, mail, propietario, id], (err, result) => {
-      if (err) {
-        console.error("Error al actualizar el local:", err);
-        return res.status(500).json({ mensaje: "Error al actualizar el local" });
-      }
-      res.json({ mensaje: "Local actualizado correctamente" });
-    });
+  const { id } = req.params;
+  const { nombre, direccion, imagen, mail, propietario } = req.body;
+
+  const consulta = "UPDATE locales SET nombre = ?, direccion = ?, imagen = ?, mail =? , propietario = ? WHERE idLocal = ?";
+
+  conection.query(consulta, [nombre, direccion, imagen, mail, propietario, id], (err, result) => {
+    if (err) {
+      console.error("Error al actualizar el local:", err);
+      return res.status(500).json({ mensaje: "Error al actualizar el local" });
+    }
+    res.json({ mensaje: "Local actualizado correctamente" });
+  });
 };
 
 //Funcion Para buscar Restaurante

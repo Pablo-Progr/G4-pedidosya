@@ -4,11 +4,13 @@ import Header from "./Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useUsuarioStore from "../store/usuarioStore";
 
 const MainRestaurantes = () => {
   //Creo Estado Para Locales
   const [locales, setLocales] = useState([]);
-
+  const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
+  console.log("ID Usuario:", idUsuario);
   //Use Effect Para Ejecutar La funcion Mostrar Productos Una Sola Vez
   useEffect(() => {
     const fetchArticles = async () => {
@@ -39,12 +41,13 @@ const MainRestaurantes = () => {
 
   //UseEffct Para Ejecutar Funcion BuscarLocales
   useEffect(() => {
-    buscarLocales(""); 
+    buscarLocales("");
   }, []);
 
   return (
     <>
-      <Header onBuscar={buscarLocales} /> {/*Paso Por Props La Funcion Buscar Pruductos A Mi Componente Header*/ }
+      <Header onBuscar={buscarLocales} />{" "}
+      {/*Paso Por Props La Funcion Buscar Pruductos A Mi Componente Header*/}
       <div className="page-layout">
         {/* Columna izquierda */}
         <aside className="sidebar left-sidebar">
