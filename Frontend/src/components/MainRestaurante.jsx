@@ -92,8 +92,8 @@ const MainRestaurante = () => {
             <h3>categoria</h3>
             <ul>
               {Object.keys(local.productos).map((categoria) => (
-                <li key={categoria}>
-                  <a href={`#${categoria.toLowerCase().replace(/\s/g, "-")}`}>
+                <li key={categoria} >
+                  <a href={`#${categoria.toLowerCase().replace(/\s/g, "-")}`} className="categoria-color">
                     {categoria}
                   </a>
                 </li>
