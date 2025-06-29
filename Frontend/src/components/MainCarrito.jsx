@@ -49,23 +49,34 @@ const MainCarrito = () => {
       </div>
 
       <div className="cardResumen">
-        <h2>Mostaza Pellegrini</h2>
-        <p>5 - 20 min · Mínimo $5.099</p>
-        <div className="summary-item">
-          <span>Subtotal</span>
-          <span>${calcularTotal()}</span>
-        </div>
-        <div className="summary-item">
-          <span>Costo de Envío</span>
-          <span>$1.129</span>
-        </div>
-        <div className="summary-item">
-          <span>Tarifa de servicio</span>
-          <span>$340</span>
-        </div>
-        <button className="coupon-btn">Pasar a finalizar compra</button>
-        <div className="total">Total ${calcularTotal() + 1129 + 340}</div>
-      </div>
+  <h2>Mostaza Pellegrini</h2>
+  <p>5 - 20 min · Mínimo $5.099</p>
+  <div className="summary-item">
+    <span>Subtotal</span>
+    <span>${calcularTotal()}</span>
+  </div>
+  <div className="summary-item">
+    <span>Costo de Envío</span>
+    <span>$1.129</span>
+  </div>
+  <div className="summary-item">
+    <span>Tarifa de servicio</span>
+    <span>$340</span>
+  </div>
+
+  <div className="summary-item">
+    <label htmlFor="metodoPago">Método de Pago:</label>
+    <select id="metodoPago" name="metodoPago">
+      <option value="tarjeta">Tarjeta de crédito/débito</option>
+      <option value="efectivo">Efectivo</option>
+      <option value="mercadopago">Mercado Pago</option>
+    </select>
+  </div>
+
+  <button className="coupon-btn">Pasar a finalizar compra</button>
+  <div className="total">Total ${calcularTotal() + 1129 + 340}</div>
+</div>
+
     </div>
   );
 };
