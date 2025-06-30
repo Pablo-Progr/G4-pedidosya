@@ -13,10 +13,10 @@ const getLocales = (req, res) => {
 
 //Funcion Para Borrar Local Atravez De Su ID
 const deleteLocal = (req, res) => {
-  const { id } = req.params
+  const { id } = req.params // Extrae el id de los parámetros de la URL
   const consulta = "delete from locales where idLocal=?"
 
-  conection.query(consulta, [id], (error, results) => {
+  conection.query(consulta, [id], (error, results) => { //Ejecuta la consulta con el valor del id.
     if (error) throw error
     res.status(200).send({ message: "Local eliminado correctamente" })
   })
@@ -52,14 +52,14 @@ const editarLocal = (req, res) => {
 
 //Funcion Para buscar Restaurante
 const buscarLocales = (req, res) => {
-  const { termino } = req.query;
+  const { termino } = req.query; //Extrae el parámetro termino de los query params de la URL.
 
   const consulta = `
       SELECT * FROM Locales 
       WHERE nombre LIKE ? OR direccion LIKE ?
     `;
 
-  const terminoBusqueda = `%${termino}%`;
+  const terminoBusqueda = `%${termino}%`;  //Prepara el valor que se va a reemplazar en los ? y Los símbolos % permiten que la búsqueda sea:"Cualquier cosa antes o después del término".
 
   conection.query(consulta, [terminoBusqueda, terminoBusqueda], (error, results) => {
     if (error) {
