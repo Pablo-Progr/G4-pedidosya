@@ -27,4 +27,17 @@ const loginUsuario = (req, res) => {
   });
 };
 
-module.exports = { loginUsuario };
+//Funcion Para Crear Local
+const crearUsuario = (req, res) => {
+  const { nombre,mail,tel, idRol, direccion, pass } = req.body;
+  const consulta = "insert into usuarios (nombre,mail,tel, idRol ,direccion, pass ) values(?,?,?,?,?,?);"
+
+  conection.query(consulta, [nombre,mail,tel, idRol, direccion, pass], (error, results) => {
+    if (error) res.status(500).send({ message: "algo salio mal" })
+
+  })
+  res.status(200).send({ message: "Usuario creado correctamente" });
+}
+
+
+module.exports = { loginUsuario,crearUsuario };

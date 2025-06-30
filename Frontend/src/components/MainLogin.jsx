@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Form, FormGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../css/mainlogin.css";
 
@@ -85,6 +86,9 @@ const MainLogin = ({ handleLogin }) => {
               <Button className="m-3" type="submit">
                 Iniciar Sesión
               </Button>
+              <Link className="m-3" to="/register">
+                Registrarse
+              </Link>
             </div>
           </Form>
         </div>

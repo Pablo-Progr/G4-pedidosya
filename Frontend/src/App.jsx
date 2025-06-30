@@ -12,6 +12,7 @@ import Autenticacion from "./components/Autenticacion";
 import RutaProtegidaAdmin from "./components/RutaProtegidaAdmin";
 import RutaProtegidaUsuario from "./components/RutaProtegidausuario";
 import Error from "./pages/Error";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/Restaurantes" element={<Restaurantes />} />
           <Route path="/error" element={<Error />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/Restaurante/:id"
             element={
