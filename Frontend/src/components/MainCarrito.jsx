@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useUsuarioStore from "../store/usuarioStore";
-import "../css/maincarrito.css"; 
+import "../css/maincarrito.css";
+import { Modal } from "react-bootstrap";
+import ModalCarrito from "./ModalCarrito";
+import { useNavigate } from "react-router-dom";
 
 const MainCarrito = () => {
   const [aclaracion, setAclaracion] = useState("");
   const [metodoPago, setMetodoPago] = useState("efectivo");
   const [carrito, setCarrito] = useState([]);
   const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
-
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCarrito = async () => {
       const res = await axios.get(`http://localhost:8000/carrito/${idUsuario}`);
@@ -16,16 +20,23 @@ const MainCarrito = () => {
     };
     fetchCarrito();
   }, [idUsuario]);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setMostrarModal(true);
+  };
+
+  const enviarCompra = async (e) => {
+    e.preventDefault();
+    setMostrarModal(true);
     try {
       await axios.post("http://localhost:8000/confirmar", {
         idUsuario,
         aclaracion,
         metodoPago,
       });
-      alert("Compra confirmada");
+
+      setMostrarModal(false);
+      navigate("/Home");
     } catch (error) {
       alert("Error al confirmar la compra" + error.message);
     }
@@ -70,6 +81,16 @@ const MainCarrito = () => {
         </form>
         <div className="total"></div>
       </div>
+
+      {mostrarModal && (
+        <ModalCarrito
+          carrito={carrito}
+          aclaracion={aclaracion}
+          metodoPago={metodoPago}
+          onConfirmar={enviarCompra}
+          onCancelar={() => setMostrarModal(false)}
+        />
+      )}
     </div>
   );
 };
