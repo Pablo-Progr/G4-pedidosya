@@ -91,8 +91,11 @@ const MainRestaurante = () => {
             <h3>categoria</h3>
             <ul>
               {Object.keys(local.productos).map((categoria) => (
-                <li key={categoria} >
-                  <a href={`#${categoria.toLowerCase().replace(/\s/g, "-")}`} className="categoria-color">
+                <li key={categoria}>
+                  <a
+                    href={`#${categoria.toLowerCase().replace(/\s/g, "-")}`}
+                    className="categoria-color"
+                  >
                     {categoria}
                   </a>
                 </li>
@@ -134,6 +137,13 @@ const MainRestaurante = () => {
                       <div>
                         <span className="star">$</span>
                         <span>{producto.precio}</span>
+                      </div>
+                      <div>
+                        <img
+                          className="product-image"
+                          src={producto.imagen}
+                          alt={producto.nombre}
+                        />
                       </div>
                     </div>
                   ))}
