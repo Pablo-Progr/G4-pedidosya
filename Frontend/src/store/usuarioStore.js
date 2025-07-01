@@ -1,15 +1,17 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from 'zustand';//create: función principal de Zustand para crear el store.
+
+
+import { persist } from 'zustand/middleware';//persist: un middleware que permite guardar el estado en el localStorage, así se mantiene incluso si recargas la página.
 
 const useUsuarioStore = create(
-  persist(
+  persist(   //Aplica persistencia al estado. Todo lo que definimos dentro se guarda en localStorage automáticamente.
     (set) => ({
       usuario: null,
       rol: null,
       iniciarSesion: (datosUsuario) => {
         set({
-          usuario: datosUsuario,
-          rol: datosUsuario.tipo,
+          usuario: datosUsuario, // guarda todo el objeto recibido.
+          rol: datosUsuario.tipo, //guarda solo la propiedad tipo del usuario.
         });
       },
       cerrarSesion: () => {
