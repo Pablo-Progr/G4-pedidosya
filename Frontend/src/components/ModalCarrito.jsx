@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/modalCarrito.css"; // Asegúrate de tener este archivo CSS
 
 const ModalCarrito = ({

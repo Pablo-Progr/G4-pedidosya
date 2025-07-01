@@ -79,10 +79,10 @@ const MainRegister = () => {
             </FormGroup>
             <FormGroup className="form-group-admin">
               <Form.Label className="mb-3">
-                <h5>Usuario</h5>
+                <h5>Mail</h5>
               </Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 placeholder="Por favor, ingrese su usuario"
                 required
                 value={mail}

@@ -1,6 +1,4 @@
 import { create } from 'zustand';//create: función principal de Zustand para crear el store.
-
-
 import { persist } from 'zustand/middleware';//persist: un middleware que permite guardar el estado en el localStorage, así se mantiene incluso si recargas la página.
 
 const useUsuarioStore = create(

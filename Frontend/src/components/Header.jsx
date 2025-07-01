@@ -32,7 +32,7 @@ const Header = ({ onBuscar }) => {
         <Form className="d-flex search-container">
           <Form.Control
             type="Search"
-            placeholder="Buscar Locales"
+            placeholder="Buscar Locales, productos"
             className="me-2 input-header"
             aria-label="Search"
             onChange={(e) => onBuscar(e.target.value)}
