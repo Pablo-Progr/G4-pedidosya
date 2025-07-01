@@ -62,7 +62,7 @@ const MainRegister = () => {
   return (
     <div className="container-mains login">
       <div className="div-content-loginadmin">
-        <h2>Login</h2>
+        <h2 className="titulo">Register</h2>
         <div className="content-form-admin">
           <Form className="form-admin" onSubmit={handleSubmit}>
             <FormGroup className="form-group-admin">
