@@ -23,9 +23,9 @@ const MainLogin = ({ handleLogin }) => {
         }
       );
 
-      console.log(response.data)
+      console.log(response.data);
 
-      handleLogin(response.data); // Envia Esos Datos A Zustand 
+      handleLogin(response.data); // Envia Esos Datos A Zustand
       setError(null);
 
       if (response) {
@@ -35,9 +35,8 @@ const MainLogin = ({ handleLogin }) => {
           title: "Iniciaste sesion",
           showConfirmButton: false,
           timer: 1500,
-        })
+        });
       }
-
     } catch (err) {
       console.error("Error al iniciar sesión:", err);
       setError("Credenciales incorrectas ");
@@ -54,7 +53,7 @@ const MainLogin = ({ handleLogin }) => {
   return (
     <div className="container-mains login">
       <div className="div-content-loginadmin">
-        <h2>Login</h2>
+        <h2 className="titulo">Login</h2>
         <div className="content-form-admin">
           <Form className="form-admin" onSubmit={handleSubmit}>
             <FormGroup className="form-group-admin">
@@ -86,9 +85,12 @@ const MainLogin = ({ handleLogin }) => {
               <Button className="m-3" type="submit">
                 Iniciar Sesión
               </Button>
-              <Link className="m-3" to="/register">
-                Registrarse
-              </Link>
+
+              <Button className="m-3">
+                <Link className="m-3" to="/register">
+                  Registrarse
+                </Link>
+              </Button>
             </div>
           </Form>
         </div>

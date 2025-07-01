@@ -129,3 +129,25 @@ body {
 .categoria-color {
   color: black;
 }
+
+
+.product-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: center; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 400px; 
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  margin-left: 30px;
+}
