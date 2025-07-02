@@ -23,8 +23,6 @@ const MainLogin = ({ handleLogin }) => {
         }
       );
 
-      console.log(response.data);
-
       handleLogin(response.data); // Envia Esos Datos A Zustand
       setError(null);
 

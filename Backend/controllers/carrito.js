@@ -32,6 +32,7 @@ const obtenerCarritos = (req, res) => {
     res.json(resultados);
   });
 };
+
 const obtenerCarritoPorUsuario = (req, res) => {
   const { idUsuario } = req.params;
 
