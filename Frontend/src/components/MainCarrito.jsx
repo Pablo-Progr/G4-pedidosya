@@ -13,6 +13,7 @@ const MainCarrito = () => {
   const idUsuario = useUsuarioStore((state) => state.usuario?.idUsuario);
   const [mostrarModal, setMostrarModal] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCarrito = async () => {
       const res = await axios.get(`http://localhost:8000/carrito/${idUsuario}`);
@@ -20,6 +21,7 @@ const MainCarrito = () => {
     };
     fetchCarrito();
   }, [idUsuario]);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setMostrarModal(true);

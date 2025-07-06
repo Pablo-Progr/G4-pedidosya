@@ -70,11 +70,6 @@ const confirmarCompra = (req, res) => {
       return res.status(400).json({ error: "El carrito está vacío" });
     }
 
-    const insertQuery = `
-      INSERT INTO pedidos (fecha, cantidad, idUsuario, idProducto, aclaracion, total, metodoPago)
-      VALUES ?
-    `;
-
     const valores = productos.map((p) => [
       fechaActual,
       p.cantidad,
@@ -85,10 +80,15 @@ const confirmarCompra = (req, res) => {
       metodoPago,
     ]);
 
+    const insertQuery = `
+      INSERT INTO pedidos (fecha, cantidad, idUsuario, idProducto, aclaracion, total, metodoPago)
+      VALUES ?
+    `;
+
     conection.query(insertQuery, [valores], (err) => {
       if (err) return res.status(500).json({ error: "Error al insertar en recibos" });
 
-      conection.query("DELETE FROM carrito WHERE idUsuario = ?", [idUsuario]);
+    conection.query("DELETE FROM carrito WHERE idUsuario = ?", [idUsuario]);
 
       res.json({ mensaje: "Compra registrada con éxito" });
     });

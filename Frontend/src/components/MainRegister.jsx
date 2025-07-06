@@ -82,7 +82,7 @@ const MainRegister = () => {
                 <h5>Mail</h5>
               </Form.Label>
               <Form.Control
-                type="email"
+                type=""
                 placeholder="Por favor, ingrese su usuario"
                 required
                 value={mail}
