@@ -1,5 +1,7 @@
 import "../css/modalProducto.css";
 
+
+
 const ModalProducto = ({
   show,
   onCerrar,
@@ -29,12 +31,13 @@ const ModalProducto = ({
             <p>{producto.descripcion}</p>
             <p>Precio unitario: ${producto.precio}</p>
             <div>
-              <button onClick={() => setCantidad(Math.max(1, cantidad - 1))}>
+              <button className="btn btn-success" onClick={() => setCantidad(Math.max(1, cantidad - 1))}>
                 -
               </button>
               <span style={{ margin: "0 10px" }}>{cantidad}</span>
-              <button onClick={() => setCantidad(cantidad + 1)}>+</button>
+              <button className="btn btn-success" onClick={() => setCantidad(cantidad + 1)}>+</button>
             </div>
+
           </div>
           <div className="modal-footer">
             <button className="btn btn-secondary" onClick={onCerrar}>

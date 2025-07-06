@@ -33,8 +33,8 @@ const ModalCarrito = ({
           <strong>Método de pago:</strong> {metodoPago}
         </p>
         <div style={{ marginTop: "1rem" }}>
-          <button onClick={onConfirmar}>Confirmar compra</button>
-          <button onClick={onCancelar} style={{ marginLeft: "1rem" }}>
+          <button className="btn btn-success" onClick={onConfirmar}>Confirmar compra</button>
+          <button className="btn btn-danger" onClick={onCancelar} style={{ marginLeft: "1rem" }}>
             Cancelar
           </button>
         </div>
