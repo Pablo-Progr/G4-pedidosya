@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Logo from "../img/logoPedidosYa.png";
 import "../css/headerAdmin.css";
 
-const HeaderAdmin = () => {
+const HeaderAdminLocal = () => {
 
   return (
     <div>
@@ -12,11 +12,11 @@ const HeaderAdmin = () => {
           <img src={Logo} className="img-logo" />
         </div>
         <div className="col-6 d-flex justify-content-around">
-          <Link to={"/admin"} className="linkBotonAdmin">
-            <button className="botonAdmin">Alta Restaurante</button>
+          <Link to={"/AdminLocal"} className="linkBotonAdmin">
+            <button className="botonAdmin">Alta Producto</button>
           </Link>
-          <Link to={"/adminCrud"} className="linkBotonAdmin">
-            <button className="botonAdmin">Lista Restaurante</button>
+          <Link to={"/AdminLocalCrud"} className="linkBotonAdmin">
+            <button className="botonAdmin">Lista Productos</button>
           </Link>
         </div>
         <div className="col d-flex justify-content-center">
@@ -26,4 +26,4 @@ const HeaderAdmin = () => {
   );
 };
 
-export default HeaderAdmin;
+export default HeaderAdminLocal;

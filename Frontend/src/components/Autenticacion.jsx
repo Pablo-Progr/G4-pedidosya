@@ -24,6 +24,8 @@ const Autenticacion = () => {
         navigate("/Admin");
       } else if (rol === "usuario") {
         navigate("/Home");
+      } else if (rol === "local") {
+        navigate("/AdminLocal");
       }
     }
   }, [usuario, rol, navigate]);

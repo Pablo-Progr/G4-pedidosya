@@ -13,6 +13,9 @@ import RutaProtegidaAdmin from "./components/RutaProtegidaAdmin";
 import RutaProtegidaUsuario from "./components/RutaProtegidausuario";
 import Error from "./pages/Error";
 import Register from "./pages/Register";
+import AdminLocal from "./pages/AdminLocal";
+import RutaProtegidaAdminLocal from "./components/RutaProtegidaAdminLocal";
+import AdminLocalCrud from "./pages/AdminLocalCrud";
 
 function App() {
   return (
@@ -61,6 +64,22 @@ function App() {
               <RutaProtegidaAdmin>
                 <AdminCrud />
               </RutaProtegidaAdmin>
+            }
+          />
+          <Route
+            path="/AdminLocal"
+            element={
+              <RutaProtegidaAdminLocal>
+                <AdminLocal />
+              </RutaProtegidaAdminLocal>
+            }
+          />
+          <Route
+            path="/AdminLocalCrud"
+            element={
+              <RutaProtegidaAdminLocal>
+                <AdminLocalCrud />
+              </RutaProtegidaAdminLocal>
             }
           />
           <Route path="/" element={<Autenticacion />} />
