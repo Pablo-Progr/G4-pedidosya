@@ -51,6 +51,7 @@ const MainAdmin = () => {
             timer: 1500,
 
           });
+          setDatos(initialState); // Reiniciar el formulario
         } else {
           alert("Error al subir la publicación");
         }
@@ -74,6 +75,7 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese el título"
                 name="nombre"
+                value= {datos.nombre}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -85,6 +87,7 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese la descripción"
                 name="direccion"
+                value= {datos.direccion}
                 onChange={handleChange}
               ></Form.Control>
             </FormGroup>
@@ -96,6 +99,7 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese la imagen de portada"
                 name="imagen"
+                value= {datos.imagen}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -107,6 +111,7 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese mail del Local"
                 name="mail"
+                value= {datos.mail}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
@@ -118,6 +123,7 @@ const MainAdmin = () => {
                 type="text"
                 placeholder="Ingrese la Nombre del Propietario"
                 name="propietario"
+                value= {datos.propietario}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
