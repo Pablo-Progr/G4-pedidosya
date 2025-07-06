@@ -7,6 +7,7 @@ import ModalProducto from "../components/ModalProducto";
 import Header from "./Header";
 import useUsuarioStore from "../store/usuarioStore";
 import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa6";
 
 const MainRestaurante = () => {
   const { id } = useParams();
@@ -44,6 +45,11 @@ const MainRestaurante = () => {
     setCantidad(1);
     setMostrarModal(true);
   };
+
+  const eliminarProducto = (index) => {
+  const nuevoPedido = miPedido.filter((_, i) => i !== index);
+  setMiPedido(nuevoPedido);
+};
 
   const realizarCompra = async () => {
     try {
@@ -183,7 +189,11 @@ const MainRestaurante = () => {
                   {item.cantidad} x ${item.precio}
                 </span>
                 <strong>= ${item.total}</strong>
+                <button className="btn btn-danger" onClick={() => eliminarProducto(index)} >
+                  <FaTrash />
+                </button>
               </div>
+              
             ))}
 
             {/* Subtotal general */}
@@ -192,7 +202,7 @@ const MainRestaurante = () => {
               Total: $
               {miPedido.reduce((acc, item) => acc + item.total, 0).toFixed(2)}
             </div>
-            <button onClick={realizarCompra}>Realizar compra</button>
+            <button className="btn btn-success" onClick={realizarCompra}>Realizar compra</button>
           </>
         )}
       </div>

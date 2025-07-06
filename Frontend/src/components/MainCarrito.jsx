@@ -22,6 +22,7 @@ const MainCarrito = () => {
     fetchCarrito();
   }, [idUsuario]);
   
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setMostrarModal(true);
@@ -36,8 +37,14 @@ const MainCarrito = () => {
         aclaracion,
         metodoPago,
       });
-
       setMostrarModal(false);
+           Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Compra Realizada",
+          showConfirmButton: false,
+          timer: 1500,
+        }); 
       navigate("/Home");
     } catch (error) {
       alert("Error al confirmar la compra" + error.message);

@@ -18,7 +18,7 @@ const obtenerLocalPorId = (req, res) => {
       p.idProducto, p.nombre, p.descripcion, p.precio, p.imagen,p.tiempoPreparado ,p.idLocal,
       c.nombre AS categoria
     FROM productos p
- JOIN catproductos c ON p.IdCatProducto = c.idCatProducto
+    JOIN catproductos c ON p.IdCatProducto = c.idCatProducto
     where idLocal = ?
   `; // Obtengo los productos del local por su ID y los agrupo por categoria
 
