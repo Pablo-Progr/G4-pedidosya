@@ -5,6 +5,7 @@ const routesLocales = require("./routes/locales")
 const routesProductos = require("./routes/productos")
 const routesUsuarios = require("./routes/usuarios")
 const routesCarrito = require("./routes/carrito")
+const routesCategorias = require("./routes/catProducto") // importo las rutas de categorias
 
 const app = express() //Guardo la funcion de express en una variable
 
@@ -16,7 +17,7 @@ app.use("/", routesLocales)
 app.use("/pr", routesProductos) // uso las rutas de productos
 app.use("/usuarios", routesUsuarios)
 app.use("/", routesCarrito)
-
+app.use("/", routesCategorias)
 
 app.get("/", (req, res) => {        //Hago peticion get para corroborar mi conexion
     res.send("Bienvenido a mi api")

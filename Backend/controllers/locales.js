@@ -71,4 +71,20 @@ const buscarLocales = (req, res) => {
   });
 };
 
-module.exports = { getLocales, deleteLocal, crearLocal, editarLocal, buscarLocales }
+const buscarlocalporpropietario = (req, res) => {
+  const { idUsuario } = req.body;
+
+  const consulta = " SELECT * FROM Locales WHERE idUsuario = ?;"
+
+
+  conection.query(consulta, [idUsuario], (error, results) => {
+    if (error) {
+      console.error("Error al buscar locales:", error);
+      return res.status(500).json({ mensaje: "Error en la búsqueda" });
+    }
+
+    res.json(results);
+  });
+};
+
+module.exports = { getLocales, deleteLocal, crearLocal, editarLocal, buscarLocales, buscarlocalporpropietario }

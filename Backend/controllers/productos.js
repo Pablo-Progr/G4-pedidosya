@@ -60,4 +60,15 @@ const obtenerLocalPorId = (req, res) => {
   });
 };
 
-module.exports = { getProductos, obtenerLocalPorId };
+const crearProducto = (req, res) => {
+  const { nombre, precio, descripcion, idLocal, imagen, tiempoPreparado, idCatProducto } = req.body;
+  const consulta = "INSERT INTO productos (nombre, precio, descripcion, idLocal, imagen, tiempoPreparado, idCatProducto) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+  conection.query(consulta, [nombre, precio, descripcion, idLocal, imagen, tiempoPreparado, idCatProducto], (error, results) => {
+    if (error) res.status(500).send({ message: "algo salio mal" })
+
+  })
+  res.status(200).send({ message: "Producto agregado correctamente" });
+}
+
+module.exports = { getProductos, obtenerLocalPorId, crearProducto };
