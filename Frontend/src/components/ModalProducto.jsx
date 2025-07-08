@@ -1,7 +1,5 @@
 import "../css/modalProducto.css";
 
-
-
 const ModalProducto = ({
   show,
   onCerrar,

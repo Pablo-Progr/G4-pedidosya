@@ -20,7 +20,6 @@ const Header = ({ onBuscar }) => {
   const handleCerrarSesion = () => {
     cerrarSesion();
     navigate("/home");
-    
   };
 
   return (

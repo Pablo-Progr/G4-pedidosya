@@ -39,7 +39,7 @@ const MainAdminLocal = () => {
         { idUsuario }
       );
       console.log(response.data);
-      setIdLocal(response.data.idLocal);
+      setIdLocal(response.data[0].idLocal);
     } catch (error) {
       console.error("Error al buscar el local por propietario:", error);
     }
@@ -179,8 +179,9 @@ const handleSubmit = async (e) => {
               >
                 <option value="">Seleccione una categoría</option>
                 {categorias.map((cat) => (
-                  <option key={cat.idCatPdroducto} value={cat.idCatPdroducto}>
-                    {cat.nombre}
+                  <option key={cat.idCatProducto} value={cat.idCatProducto}>
+                    {" "}
+                    {cat.nombre}{" "}
                   </option>
                 ))}
               </Form.Select>

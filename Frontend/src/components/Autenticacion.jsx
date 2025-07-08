@@ -26,9 +26,11 @@ const Autenticacion = () => {
         navigate("/Home");
       } else if (rol === "local") {
         navigate("/AdminLocal");
-      }
+      } 
     }
+   
   }, [usuario, rol, navigate]);
+
 
   return <MainLogin handleLogin={handleLogin} />;
 };

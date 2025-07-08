@@ -71,4 +71,52 @@ const crearProducto = (req, res) => {
   res.status(200).send({ message: "Producto agregado correctamente" });
 }
 
-module.exports = { getProductos, obtenerLocalPorId, crearProducto };
+const obtenerProductosPorLocal = (req, res) => {
+  const { idLocal } = req.body;
+  const consulta = "SELECT * FROM productos WHERE idLocal = ?";
+
+  conection.query(consulta, [idLocal], (error, results) => {
+    if (error) {
+      return res.status(500).json({ error: "Error al obtener los productos" });
+    }
+    res.json(results);
+  });
+};
+
+const eliminarProducto = (req, res) => {
+  const { id } = req.params; // Extrae el id de los parámetros de la URL
+  const consulta = "DELETE FROM productos WHERE idProducto = ?";
+
+  conection.query(consulta, [id], (error, results) => { // Ejecuta la consulta con el valor del id.
+    if (error) throw error;
+    res.status(200).send({ message: "Producto eliminado correctamente" });
+  });
+}
+
+const editarProducto = (req, res) => {
+  const { id } = req.params;
+  const {
+    nombre,
+    precio,
+    descripcion,
+    imagen,
+    tiempoPreparado,
+    idCatProducto
+  } = req.body;
+
+  const consulta = "UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, imagen = ?, tiempoPreparado = ?, idCatProducto = ? WHERE idProducto = ?;";
+
+  conection.query(
+    consulta,
+    [nombre, precio, descripcion, imagen, tiempoPreparado, idCatProducto, id],
+    (error, results) => {
+      if (error) {
+        console.error("Error actualizando producto:", error);
+        return res.status(500).json({ error: "Error actualizando producto" });
+      }
+      res.status(200).json({ message: "Producto actualizado correctamente" });
+    }
+  );
+};
+
+module.exports = { getProductos, obtenerLocalPorId, crearProducto, obtenerProductosPorLocal, eliminarProducto, editarProducto };
